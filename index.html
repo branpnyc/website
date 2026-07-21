@@ -407,6 +407,12 @@
     section {
       padding: 88px 0;
       border-top: 2px solid var(--ink);
+      scroll-margin-top: 110px;
+    }
+
+    header,
+    footer {
+      scroll-margin-top: 110px;
     }
 
     .section-head {
@@ -845,10 +851,12 @@
 
     .pillar strong {
       font-family: var(--display);
-      font-size: clamp(30px, 4.2vw, 50px);
+      font-size: clamp(24px, 3.1vw, 38px);
       font-weight: 800;
       line-height: 0.9;
+      text-align: center;
       text-transform: uppercase;
+      overflow-wrap: anywhere;
     }
 
     .pillar span {
@@ -914,8 +922,8 @@
       text-transform: uppercase;
     }
 
-    .contact-panel a,
-    .contact-panel span {
+    .contact-panel > a,
+    .contact-panel > span {
       display: block;
       padding: 18px 20px;
       border-bottom: 1px solid rgba(182, 141, 71, 0.45);
@@ -923,8 +931,8 @@
       font-size: 18px;
     }
 
-    .contact-panel a:last-child,
-    .contact-panel span:last-child { border-bottom: 0; }
+    .contact-panel > a:last-child,
+    .contact-panel > span:last-child { border-bottom: 0; }
 
     .footer-line {
       margin-top: 68px;
@@ -955,7 +963,10 @@
         padding: 16px 0;
       }
 
-      .nav-links { justify-content: flex-start; }
+      .nav-links {
+        justify-content: center;
+        width: 100%;
+      }
       .hero-board,
       .focus-layout,
       .system-board,
@@ -969,6 +980,12 @@
       .hero-panel,
       .image-panel { min-height: auto; }
 
+      .focus-copy {
+        min-height: auto;
+        gap: 32px;
+        padding: 28px;
+      }
+
       .hero-panel.portrait {
         margin-top: 0;
         padding: 28px;
@@ -979,6 +996,10 @@
       .thesis-pane:last-child { border-bottom: 0; }
       .story-grid,
       .space-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+      header,
+      section,
+      footer { scroll-margin-top: 130px; }
     }
 
     @media (max-width: 640px) {

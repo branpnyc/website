@@ -989,9 +989,11 @@
       .hero-panel.portrait {
         margin-top: 0;
         padding: 28px;
+        aspect-ratio: auto;
       }
 
       .hero-panel { aspect-ratio: 4 / 5; }
+      .hero-panel.portrait { aspect-ratio: auto; }
       .thesis-pane { min-height: auto; border-right: 0; border-bottom: 2px solid var(--ink); }
       .thesis-pane:last-child { border-bottom: 0; }
       .story-grid,
@@ -1016,6 +1018,16 @@
       .story-card:nth-child(6),
       .node.core { grid-column: auto; }
       .project { grid-template-columns: 1fr; }
+      .headshot-bio,
+      .service-box {
+        width: 100%;
+        max-width: none;
+      }
+      .headshot-bio,
+      .service-box {
+        padding: 16px;
+      }
+      .service-box p { font-size: 18px; }
       section { padding: 64px 0; }
     }
 

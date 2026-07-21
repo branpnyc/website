@@ -1,220 +1,1200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brandon Payne | Community x Connection</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            scroll-behavior: smooth;
-        }
-        .serif { font-family: 'Playfair Display', serif; }
-        
-        .mta-bullet {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            color: white;
-            font-weight: 900;
-            font-size: 16px;
-            margin-right: 8px;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brandon Payne | Architect of Discovery</title>
+  <style>
+    :root {
+      --paper: #E5DAC6;
+      --cream: #F0E8D6;
+      --ink: #12110F;
+      --charcoal: #1F1D19;
+      --gold: #B68D47;
+      --red: #892620;
+      --blue: #25475B;
+      --tan: #D5C6A9;
+      --grid: rgba(18, 17, 15, 0.075);
+      --display: "DIN Condensed Bold", "Bebas Neue", Oswald, "Arial Narrow", sans-serif;
+      --body: "Trebuchet MS", "Helvetica Neue", Arial, sans-serif;
+      --mono: "SF Mono", Menlo, "Courier New", monospace;
+      --serif: "New York", Georgia, "Times New Roman", serif;
+      --hand: "Bradley Hand", "Marker Felt", Caveat, cursive;
+    }
 
-        .path-draw {
-            stroke-dasharray: 2000;
-            stroke-dashoffset: 2000;
-            animation: draw 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
+    * { box-sizing: border-box; }
 
-        @keyframes draw {
-            to { stroke-dashoffset: 0; }
-        }
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
 
-        .station-card {
-            border-top: 2px solid #000;
-            padding-top: 2rem;
-            margin-bottom: 4rem;
-        }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      overflow-x: hidden;
+    }
 
-        ::selection {
-            background-color: #fee2e2;
-            color: #000;
-        }
-    </style>
+    img { display: block; max-width: 100%; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 64px;
+      padding: 18px 28px;
+      background: var(--ink);
+      color: var(--cream);
+      border: 2px solid var(--ink);
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .bar span:last-child {
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .kicker,
+    .meta,
+    .caption,
+    .nav a,
+    .button {
+      font-family: var(--mono);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 { font-size: clamp(72px, 13vw, 156px); }
+    h2 { font-size: clamp(46px, 7vw, 86px); }
+    h3 { font-size: clamp(27px, 3vw, 38px); }
+
+    p {
+      margin: 0;
+      font-size: clamp(17px, 1.45vw, 21px);
+      line-height: 1.35;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(229, 218, 198, 0.92);
+      border-bottom: 2px solid var(--ink);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      align-items: center;
+      gap: 28px;
+      min-height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      background: var(--ink);
+      color: var(--gold);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .nav a {
+      padding: 9px 11px;
+      border: 1px solid transparent;
+      color: rgba(18, 17, 15, 0.72);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      border-color: var(--ink);
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .hero {
+      min-height: calc(100svh - 70px);
+      padding: 32px 0 42px;
+      display: grid;
+      align-items: stretch;
+    }
+
+    .hero-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 28px;
+      min-height: 0;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 620px;
+      padding: 34px 0 0;
+    }
+
+    .hero-title .script {
+      display: block;
+      margin-top: 4px;
+      color: var(--blue);
+      font-family: var(--hand);
+      font-size: clamp(34px, 5vw, 62px);
+      font-weight: 800;
+      line-height: 1;
+      text-transform: none;
+    }
+
+    .hero-title .kicker {
+      margin-left: 6px;
+    }
+
+    .hero-lede {
+      max-width: 640px;
+      margin-top: 28px;
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.18;
+    }
+
+    .status-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 2px solid var(--ink);
+      background: var(--cream);
+    }
+
+    .status-strip div {
+      min-height: 102px;
+      padding: 18px;
+      border-right: 2px solid var(--ink);
+    }
+
+    .status-strip div:last-child { border-right: 0; }
+
+    .status-strip strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .status-strip span {
+      display: block;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .intro-lines {
+      display: grid;
+      gap: 18px;
+      max-width: 660px;
+      margin-top: 28px;
+    }
+
+    .intro-lines p {
+      display: flex;
+      align-items: center;
+      min-height: 92px;
+      padding: 18px 22px;
+      border: 2px solid var(--ink);
+      border-left: 10px solid var(--blue);
+      background: rgba(240, 232, 214, 0.82);
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.7vw, 34px);
+      line-height: 1.16;
+    }
+
+    .intro-lines p:nth-child(2) { border-left-color: var(--red); }
+    .intro-lines p:nth-child(3) { border-left-color: var(--gold); color: rgba(18, 17, 15, 0.7); }
+
+    .service-box {
+      max-width: 620px;
+      padding: 22px 24px;
+      border: 2px solid var(--ink);
+      border-left: 10px solid var(--blue);
+      background: var(--cream);
+    }
+
+    .service-box.outcome-box {
+      border-left-color: var(--gold);
+    }
+
+    .service-box p {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.28;
+    }
+
+    .service-box strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--red);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 620px;
+      overflow: hidden;
+      border: 4px solid var(--ink);
+      background: var(--charcoal);
+    }
+
+    .hero-panel.portrait {
+      display: grid;
+      align-content: start;
+      justify-items: center;
+      gap: 18px;
+      margin-top: -42px;
+      padding: 30px 34px 34px;
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        var(--cream);
+      background-size: 24px 24px;
+    }
+
+    .hero-panel.portrait::after {
+      display: none;
+    }
+
+    .hero-panel.portrait img {
+      width: min(68%, 394px);
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid var(--ink);
+    }
+
+    .headshot-bio {
+      width: min(100%, 520px);
+      margin-top: 14px;
+      padding: 18px 20px;
+      border: 2px solid var(--ink);
+      border-left: 10px solid var(--gold);
+      background: rgba(240, 232, 214, 0.9);
+      color: var(--ink);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.34;
+    }
+
+    .hero-panel img,
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.92) contrast(1.06);
+      transition: transform 520ms ease, filter 520ms ease;
+    }
+
+    .hero-panel::after,
+    .image-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 52%, rgba(18, 17, 15, 0.44));
+    }
+
+    .image-panel:hover img,
+    .hero-panel:hover img {
+      transform: scale(1.035);
+      filter: saturate(1) contrast(1.08);
+    }
+
+    .hero-label {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 14px;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .hero-label span:first-child {
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .hero-label span:last-child {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.12;
+      text-align: right;
+    }
+
+    section {
+      padding: 88px 0;
+      border-top: 2px solid var(--ink);
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-head p {
+      max-width: 700px;
+      margin-top: 18px;
+    }
+
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border: 2px solid var(--ink);
+      background: var(--cream);
+    }
+
+    .thesis-pane {
+      min-height: 340px;
+      padding: clamp(24px, 4vw, 42px);
+      border-right: 2px solid var(--ink);
+    }
+
+    .thesis-pane:last-child {
+      border-right: 0;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .thesis-pane h3 {
+      margin-bottom: 24px;
+      color: inherit;
+    }
+
+    .thesis-pane ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .thesis-pane li {
+      padding: 14px 0;
+      border-top: 1px solid currentColor;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .focus-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 1.05fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .focus-copy {
+      display: flex;
+      min-height: 420px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 36px;
+      border: 2px solid var(--ink);
+      background: var(--cream);
+    }
+
+    .focus-copy.dark {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .focus-copy.dark .kicker { color: var(--gold); }
+
+    .focus-copy .lede {
+      max-width: 620px;
+      margin-top: 24px;
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.12;
+    }
+
+    .focus-copy .sub {
+      max-width: 620px;
+      margin-top: 18px;
+      font-size: 19px;
+      color: rgba(18, 17, 15, 0.72);
+    }
+
+    .focus-copy.dark .sub { color: rgba(240, 232, 214, 0.75); }
+
+    .proof-image {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      background: var(--charcoal);
+    }
+
+    .proof-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.9) contrast(1.05);
+    }
+
+    .proof-image.contain {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: var(--cream);
+    }
+
+    .proof-image.contain img {
+      width: min(100%, 520px);
+      height: auto;
+      object-fit: contain;
+      border: 2px solid var(--ink);
+      filter: none;
+    }
+
+    .proof-label {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      z-index: 1;
+      padding: 10px 12px;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .link-row a,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 11px 14px;
+      border: 2px solid var(--ink);
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .focus-copy .button {
+      margin-top: 30px;
+    }
+
+    .focus-copy.dark .link-row a,
+    .focus-copy.dark .button {
+      border-color: var(--gold);
+      background: transparent;
+      color: var(--cream);
+    }
+
+    .link-row a:hover,
+    .button:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .story-card {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      background: var(--charcoal);
+    }
+
+    .story-card:nth-child(1),
+    .story-card:nth-child(6) {
+      grid-column: span 2;
+    }
+
+    .story-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+
+    .story-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(18, 17, 15, 0.02), rgba(18, 17, 15, 0.74));
+    }
+
+    .story-card .text {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+      color: var(--cream);
+    }
+
+    .story-card .num {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 12px;
+      background: var(--ink);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .story-card h3 {
+      margin-bottom: 10px;
+      color: var(--cream);
+      font-size: 30px;
+    }
+
+    .story-card p {
+      max-width: 420px;
+      font-size: 16px;
+      line-height: 1.28;
+    }
+
+    .system-board {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .image-panel {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      background: var(--charcoal);
+    }
+
+    .system-map {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-content: stretch;
+    }
+
+    .node {
+      min-height: 170px;
+      padding: 22px;
+      border: 2px solid var(--ink);
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .node.core {
+      grid-column: span 2;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .node strong {
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .node.core strong { color: var(--gold); }
+
+    .node span {
+      display: block;
+      margin-top: 18px;
+      font-family: var(--display);
+      font-size: 31px;
+      font-weight: 800;
+      line-height: 0.98;
+      text-transform: uppercase;
+    }
+
+    .space-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .space {
+      min-height: 210px;
+      padding: 24px;
+      border: 2px solid var(--ink);
+      background: rgba(240, 232, 214, 0.78);
+    }
+
+    .space .meta {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .space h3 {
+      margin: 38px 0 14px;
+      font-size: 31px;
+    }
+
+    .space p {
+      font-size: 17px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .project-list {
+      border: 2px solid var(--ink);
+      background: var(--cream);
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      gap: 22px;
+      padding: 22px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .project:last-child { border-bottom: 0; }
+
+    .project .meta {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .project h3 {
+      margin-bottom: 8px;
+      font-size: 31px;
+    }
+
+    .project p {
+      font-size: 17px;
+    }
+
+    .quote-panel {
+      padding: clamp(28px, 5vw, 52px);
+      border: 2px solid var(--ink);
+      border-left: 10px solid var(--gold);
+      background: var(--cream);
+    }
+
+    .quote-panel blockquote {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.08;
+    }
+
+    .quote-panel cite {
+      display: block;
+      margin-top: 28px;
+      color: var(--red);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    .closing {
+      padding: 96px 0 40px;
+      background: var(--ink);
+      color: var(--cream);
+      border-top: 0;
+    }
+
+    .closing-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .closing h2 {
+      max-width: 820px;
+      color: var(--cream);
+    }
+
+    .pillar-graphic {
+      width: min(100%, 820px);
+    }
+
+    .pillar-topline {
+      margin-bottom: 18px;
+      color: var(--gold);
+      font-family: var(--hand);
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1;
+      text-transform: none;
+    }
+
+    .pillar-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: end;
+    }
+
+    .pillar {
+      display: grid;
+      align-content: space-between;
+      min-height: 220px;
+      padding: 20px 14px 18px;
+      border: 2px solid var(--gold);
+      border-bottom-width: 10px;
+      background: rgba(240, 232, 214, 0.06);
+      overflow: hidden;
+    }
+
+    .pillar strong {
+      font-family: var(--display);
+      font-size: clamp(30px, 4.2vw, 50px);
+      font-weight: 800;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .pillar span {
+      margin-top: 42px;
+      color: rgba(240, 232, 214, 0.72);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .pillar:nth-child(1) { border-color: var(--gold); }
+    .pillar:nth-child(2) { border-color: var(--red); }
+    .pillar:nth-child(3) { border-color: var(--blue); }
+
+    .pillar-base {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .contact-panel {
+      border: 2px solid var(--gold);
+      background: rgba(240, 232, 214, 0.06);
+      font-style: normal;
+    }
+
+    .contact-image {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--gold);
+      background: var(--ink);
+    }
+
+    .contact-image img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      opacity: 0.48;
+      filter: saturate(0.72) contrast(1.08);
+    }
+
+    .contact-image span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      padding: 0 18px;
+      transform: translate(-50%, -50%);
+      color: var(--gold);
+      font-family: var(--display);
+      font-size: clamp(42px, 6vw, 82px);
+      font-weight: 800;
+      line-height: 0.88;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .contact-panel a,
+    .contact-panel span {
+      display: block;
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(182, 141, 71, 0.45);
+      color: var(--cream);
+      font-size: 18px;
+    }
+
+    .contact-panel a:last-child,
+    .contact-panel span:last-child { border-bottom: 0; }
+
+    .footer-line {
+      margin-top: 68px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(240, 232, 214, 0.24);
+      color: rgba(240, 232, 214, 0.64);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .nav-inner {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links { justify-content: flex-start; }
+      .hero-board,
+      .focus-layout,
+      .system-board,
+      .projects,
+      .closing-grid,
+      .thesis-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .image-panel { min-height: auto; }
+
+      .hero-panel.portrait {
+        margin-top: 0;
+        padding: 28px;
+      }
+
+      .hero-panel { aspect-ratio: 4 / 5; }
+      .thesis-pane { min-height: auto; border-right: 0; border-bottom: 2px solid var(--ink); }
+      .thesis-pane:last-child { border-bottom: 0; }
+      .story-grid,
+      .space-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 28px, 1180px); }
+      .bar { align-items: flex-start; flex-direction: column; }
+      .status-strip,
+      .story-grid,
+      .space-grid,
+      .pillar-row,
+      .system-map { grid-template-columns: 1fr; }
+      .status-strip div { border-right: 0; border-bottom: 2px solid var(--ink); }
+      .status-strip div:last-child { border-bottom: 0; }
+      .story-card:nth-child(1),
+      .story-card:nth-child(6),
+      .node.core { grid-column: auto; }
+      .project { grid-template-columns: 1fr; }
+      section { padding: 64px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal,
+      .hero-panel img,
+      .image-panel img {
+        transition: none;
+      }
+    }
+  </style>
 </head>
-<body class="bg-white text-stone-900">
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home" aria-label="Brandon Payne home">
+        <span class="mark">BP</span>
+        <span>Brandon Payne</span>
+      </a>
+      <div class="nav-links" aria-label="Primary">
+        <a href="#present">AI</a>
+        <a href="#past">Literacy</a>
+        <a href="#future">Wellness</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Header -->
-    <nav class="fixed w-full z-50 bg-white border-b-4 border-black">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center">
-                <span class="mta-bullet bg-[#FF6319]">B</span>
-                <span class="font-black text-2xl tracking-tighter uppercase">Brandon Payne</span>
-            </div>
-            <div class="hidden md:flex items-center space-x-8 text-[11px] font-black uppercase tracking-widest">
-                <a href="#map" class="hover:text-red-600 transition-colors">System Map</a>
-                <a href="#stations" class="hover:text-red-600 transition-colors">Stations</a>
-                <a href="https://canva.link/umqj841nahfrdsx" target="_blank" class="hover:text-red-600 transition-colors">Schedule</a>
-            </div>
+  <header class="hero" id="home">
+    <div class="wrap hero-board">
+      <div class="hero-copy reveal">
+        <div class="hero-title">
+          <p class="kicker">AI educator / Literacy strategist / Community builder</p>
+          <h1>Brandon Payne <span class="script">community connection</span></h1>
+          <div class="intro-lines">
+            <p>I view how we learn through the lens of literacy.</p>
+            <p>I teach how to use AI in shaping how we think.</p>
+            <p>I explore how wellness builds connected communities.</p>
+          </div>
         </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="pt-44 pb-20 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-            <div class="lg:col-span-8">
-                <h1 class="text-6xl md:text-9xl font-black tracking-tighter leading-none mb-8">
-                    THE <br>COMMUNITY <br><span class="text-stone-300 italic">CONNECTION</span>
-                </h1>
-                <p class="text-xl md:text-3xl font-light leading-relaxed text-stone-600 max-w-2xl">
-                    Mapping a creative career through the neighborhoods, tech labs, and community centers of New York City.
-                </p>
-            </div>
-            <div class="lg:col-span-4">
-                <div class="border-2 border-black p-6 bg-white shadow-[4px_4px_0px_0px_rgba(238,53,46,1)]">
-                    <div class="bg-[#EE352E] text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest inline-block mb-4">Service Status</div>
-                    <p class="text-sm font-bold leading-tight uppercase">
-                        Active Service: Brandon Payne <br>
-                        Delays: None at this time <br>
-                        Next Stop: Community Impact
-                    </p>
-                </div>
-            </div>
+      </div>
+      <figure class="hero-panel portrait reveal">
+        <img src="headshots/brandon-current-headshot.png" alt="Current professional headshot of Brandon Payne">
+        <figcaption class="headshot-bio">Brooklyn-born educator Brandon Payne helps communities transform personal passions into projects across literacy, media technology, and AI learning.</figcaption>
+        <div class="service-box">
+          <p><strong>Spaces I've worked in</strong>Universities, Libraries, &amp; Public Schools.</p>
         </div>
-    </section>
-
-    <!-- System Map Section -->
-    <section id="map" class="py-24 bg-stone-50 border-y-2 border-stone-200">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-20">
-                
-                <!-- SVG Visual -->
-                <div class="lg:w-1/2 bg-white p-10 border border-stone-200 shadow-inner rounded-sm">
-                    <svg viewBox="0 0 400 600" class="w-full h-auto">
-                        <text x="320" y="80" class="text-[10px] font-bold fill-stone-300 uppercase tracking-widest">The Bronx</text>
-                        <text x="320" y="280" class="text-[10px] font-bold fill-stone-300 uppercase tracking-widest">Brooklyn</text>
-                        <text x="320" y="520" class="text-[10px] font-bold fill-stone-300 uppercase tracking-widest">Queens</text>
-
-                        <!-- Lines -->
-                        <path d="M100 0 L100 250 L250 250 L250 550" fill="none" stroke="#EE352E" stroke-width="6" stroke-linecap="round" class="path-draw" />
-                        <path d="M250 450 L250 550" fill="none" stroke="#FF6319" stroke-width="8" stroke-linecap="round" class="path-draw" />
-                        <path d="M80 0 L80 150" fill="none" stroke="#00933C" stroke-width="14" stroke-linecap="round" class="path-draw" />
-                        <path d="M0 250 L120 250" fill="none" stroke="#0039A6" stroke-width="8" stroke-linecap="round" class="path-draw" />
-                        <path d="M100 150 L100 250 L175 250" fill="none" stroke="#6CBE45" stroke-width="4" stroke-linecap="round" class="path-draw" />
-                        
-                        <!-- Stations -->
-                        <circle cx="80" cy="100" r="12" fill="white" stroke="#00933C" stroke-width="6" />
-                        <text x="105" y="105" class="text-[14px] font-black uppercase tracking-tighter">Hunts Point</text>
-
-                        <circle cx="100" cy="250" r="10" fill="white" stroke="#0039A6" stroke-width="6" />
-                        <text x="125" y="240" class="text-[14px] font-black uppercase tracking-tighter">Franklin Ave</text>
-
-                        <circle cx="175" cy="250" r="10" fill="white" stroke="#6CBE45" stroke-width="6" />
-                        <text x="175" y="285" class="text-[14px] font-black uppercase text-center tracking-tighter" text-anchor="middle">Fulton St (BK)</text>
-
-                        <circle cx="250" cy="500" r="10" fill="white" stroke="#FF6319" stroke-width="6" />
-                        <text x="250" y="540" class="text-[14px] font-black uppercase text-center tracking-tighter" text-anchor="middle">21-Queensbridge</text>
-                    </svg>
-                </div>
-
-                <!-- Station Details -->
-                <div id="stations" class="lg:w-1/2">
-                    <div class="station-card">
-                        <div class="flex items-center mb-6">
-                            <span class="mta-bullet bg-[#00933C]">6</span>
-                            <span class="text-xs font-black uppercase tracking-widest opacity-50">Hunts Point | The Point CDC</span>
-                        </div>
-                        <h3 class="text-4xl font-black tracking-tighter mb-4">GREATIVITY</h3>
-                        <p class="text-stone-600 leading-relaxed max-w-md mb-4">
-                            A manifesto for the overlooked. Building success through "Great Habits" for youth in the South Bronx, transforming passions into purpose.
-                        </p>
-                        <a href="https://Gr8ivity.wordpress.com" target="_blank" class="text-[11px] font-black uppercase underline decoration-2 underline-offset-4 hover:text-red-600 tracking-widest">READ THE BLOG</a>
-                    </div>
-
-                    <div class="station-card">
-                        <div class="flex items-center mb-6">
-                            <span class="mta-bullet bg-[#0039A6]">C</span>
-                            <span class="text-xs font-black uppercase tracking-widest opacity-50">Franklin Ave | Bedford Library</span>
-                        </div>
-                        <h3 class="text-4xl font-black tracking-tighter mb-4">YALP MAGAZINE</h3>
-                        <p class="text-stone-600 leading-relaxed max-w-md mb-4">
-                            Serving as an in-house coach for navigating life's next steps through skill-building and reflection. Empowering Brooklyn's young adults through the intersection of digital and creative writing.
-                        </p>
-                        <a href="https://archive.org/details/yalpmagazine2019" target="_blank" class="text-[11px] font-black uppercase underline decoration-2 underline-offset-4 hover:text-blue-600 tracking-widest">READ THE MAGAZINE</a>
-                    </div>
-
-                    <div class="station-card">
-                        <div class="flex items-center mb-6">
-                            <span class="mta-bullet bg-[#6CBE45]">G</span>
-                            <span class="mta-bullet bg-[#0039A6]">C</span>
-                            <span class="text-xs font-black uppercase tracking-widest opacity-50">Fulton St (BK) | BRIC</span>
-                        </div>
-                        <h3 class="text-4xl font-black tracking-tighter mb-4">QUARANTINE HOUR</h3>
-                        <p class="text-stone-600 leading-relaxed mb-4 max-w-md">
-                            Live from Bed-Stuy. A digital synthesis of the "Village Takes," capturing our collective experience during a global pause.
-                        </p>
-                        <div class="flex flex-wrap gap-x-6 gap-y-2">
-                            <a href="https://archive.org/details/quarantine-hour-eps-1" target="_blank" class="text-[11px] font-black uppercase underline decoration-2 underline-offset-4 hover:text-green-600 tracking-widest">LISTEN TO PODCAST</a>
-                            <a href="https://archive.org/details/nycha-dreams-stereotypes" target="_blank" class="text-[11px] font-black uppercase underline decoration-2 underline-offset-4 hover:text-green-600 tracking-widest">WATCH DOCUMENTARY</a>
-                        </div>
-                    </div>
-
-                    <div class="station-card">
-                        <div class="flex items-center mb-6">
-                            <span class="mta-bullet bg-[#FF6319]">F</span>
-                            <span class="text-xs font-black uppercase tracking-widest opacity-50">21-Queensbridge | Queensbridge Tech Lab</span>
-                        </div>
-                        <h3 class="text-4xl font-black tracking-tighter mb-4">QUEENS' MAKERSPACE</h3>
-                        <p class="text-stone-600 leading-relaxed mb-6 max-w-md">
-                            Community meets technology in the heart of Queensbridge. Training and support ensure that the tools for creation remain accessible to all.
-                        </p>
-                        <a href="https://www.queenslibrary.org/programs-activities/technology-training/queensbridge-tech-lab" target="_blank" class="inline-flex items-center space-x-2 text-[11px] font-black uppercase border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition tracking-widest">
-                            <span>Lab Info</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="service-box outcome-box">
+          <p><strong>Outcomes</strong>Training and support where tools for creation remain accessible to all.</p>
         </div>
-    </section>
+      </figure>
+    </div>
+  </header>
 
-    <!-- Advisory Section -->
-    <section class="py-32 px-6 bg-white">
-        <div class="max-w-4xl mx-auto border-4 border-black p-8 md:p-16 relative">
-            <div class="absolute -top-4 left-8 bg-white px-4 text-xs font-black tracking-[0.3em] uppercase">Service Announcement</div>
-            <p class="serif text-4xl md:text-6xl leading-tight mb-12 italic">
-                "Our responsibility is to fight against the inner collaborator of oppression. It starts with us."
-            </p>
-            <div class="flex items-center space-x-4">
-                <span class="mta-bullet bg-black text-sm">!</span>
-                <span class="text-sm font-black uppercase tracking-widest">Mind The Gap Between Intent & Impact</span>
-            </div>
+  <section id="present">
+    <div class="wrap focus-layout">
+      <div class="focus-copy dark reveal">
+        <div>
+          <p class="kicker">Present / Lead offer</p>
+          <h2>4-6 weeks. Project-based. Any age.</h2>
+          <p class="lede">Most people fear AI or embrace its potential. I meet people in the middle to help them use it with intention.</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white py-20 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end">
-            <div>
-                <div class="flex items-center space-x-3 mb-8">
-                    <span class="mta-bullet bg-[#FF6319] text-white">B</span>
-                    <span class="text-2xl font-black tracking-tighter uppercase">Brandon Payne</span>
-                </div>
-                <p class="text-stone-500 text-[10px] font-bold uppercase tracking-widest">
-                    Translating Creative Vision into Community Action
-                </p>
-            </div>
-            <div class="mt-12 md:mt-0 text-right">
-                <p class="text-[#EE352E] text-xs font-bold uppercase tracking-widest italic">Live from Bed-Stuy</p>
-                <p class="text-stone-600 text-[9px] mt-2 uppercase tracking-widest">© 2024 System Portfolio</p>
-            </div>
+        <div>
+          <p class="sub">Currently teaching Tamwood Camps' AI Academy at Fordham University.</p>
+          <a class="button" href="mailto:brandonpnyc@gmail.com">Start a conversation</a>
         </div>
-    </footer>
+      </div>
+      <figure class="proof-image reveal">
+        <img src="work-photos/career-day-learning-room.avif" alt="Career day learning room with students and presentation setup">
+        <figcaption class="proof-label">Learning room / active service</figcaption>
+      </figure>
+    </div>
+  </section>
 
+  <section id="past">
+    <div class="wrap focus-layout">
+      <figure class="proof-image reveal">
+        <img src="work-photos/youth-media-group.jpg" alt="Youth media group standing together after a field learning session">
+        <figcaption class="proof-label">Youth media / literacy proof</figcaption>
+      </figure>
+      <div class="focus-copy reveal">
+        <div>
+          <p class="kicker">Foundation / Past</p>
+          <h2>Literacy And Digital Media</h2>
+          <p class="lede">Before AI, I taught kids to read something and decide what it meant for themselves.</p>
+        </div>
+        <div>
+          <p class="sub">That's the actual skill. AI just raised the stakes on it.</p>
+          <div class="link-row">
+            <a href="https://Gr8ivity.wordpress.com" target="_blank" rel="noopener">Blog</a>
+            <a href="https://archive.org/details/yalpmagazine2019" target="_blank" rel="noopener">Zine</a>
+            <a href="https://archive.org/details/quarantine-hour-eps-1" target="_blank" rel="noopener">Podcast</a>
+            <a href="https://archive.org/details/nycha-dreams-stereotypes" target="_blank" rel="noopener">Documentary</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="future">
+    <div class="wrap focus-layout">
+      <div class="focus-copy reveal">
+        <div>
+          <p class="kicker">Future / Coming soon</p>
+          <h2>Wellness: Retreats And Tech Detox</h2>
+          <p class="lede">Mindfulness isn't a break from the work. It's where the work runs out of gas without it.</p>
+        </div>
+        <p class="sub">Led sessions with Access Mindfulness in NYC. Trained through Mindful Harlem's MBSR program.</p>
+      </div>
+      <figure class="proof-image reveal">
+        <img src="work-photos/community-practice.png" alt="Community practice session with group learning activity">
+        <figcaption class="proof-label">Wellness session / community practice</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <div class="bar reveal"><span>The Throughline</span><span>Literacy / AI / Wellness</span></div>
+      <div class="thesis-grid reveal">
+        <div class="thesis-pane">
+          <h3>The skill</h3>
+          <ul>
+            <li>Read clearly.</li>
+            <li>Question the tool.</li>
+            <li>Apply the idea.</li>
+          </ul>
+        </div>
+        <div class="thesis-pane">
+          <h3>The outcome</h3>
+          <ul>
+            <li>Use AI with purpose.</li>
+            <li>Build confidence through practice.</li>
+            <li>Stay connected while technology accelerates.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="quote-panel reveal">
+        <blockquote>&quot;I enjoyed most that Brandon used real-world experiences, and we learned how to apply practical ways for using AI.&quot;</blockquote>
+        <cite>Jessica H.</cite>
+      </div>
+    </div>
+  </section>
+
+  <footer class="closing" id="contact">
+    <div class="wrap closing-grid">
+      <div class="reveal">
+        <p class="kicker">Contact</p>
+        <div class="pillar-graphic" aria-label="Literacy, AI, and Wellness practice model">
+          <div class="pillar-topline">view. teach. explore.</div>
+          <div class="pillar-row">
+            <div class="pillar"><strong>Literacy</strong><span>View clearly</span></div>
+            <div class="pillar"><strong>AI</strong><span>Teach with purpose</span></div>
+            <div class="pillar"><strong>Wellness</strong><span>Explore together</span></div>
+          </div>
+          <div class="pillar-base">Literacy | AI | Wellness</div>
+        </div>
+      </div>
+      <address class="contact-panel reveal">
+        <div class="contact-image">
+          <img src="work-photos/workshop-room.jpg" alt="Prepared community learning room with workshop materials">
+          <span>Thank you for visiting</span>
+        </div>
+        <a href="mailto:brandonpnyc@gmail.com">brandonpnyc@gmail.com</a>
+        <span>New York, NY</span>
+      </address>
+    </div>
+    <div class="wrap footer-line">&copy; 2026 Brandon Payne / AI education / Literacy / Wellness</div>
+  </footer>
+
+  <script>
+    const navLinks = [...document.querySelectorAll(".nav a[href^='#']")];
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("is-visible");
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-42% 0px -50% 0px", threshold: 0 });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  </script>
 </body>
 </html>

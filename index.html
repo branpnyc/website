@@ -451,18 +451,20 @@
     }
 
     .proof-image.people-frame {
-      min-height: var(--panel-min);
-      display: grid;
-      place-items: center;
-      padding: 18px;
+      align-self: center;
+      min-height: 0;
+      padding: 0;
     }
 
     .proof-image.people-frame img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center center;
     }
+
+    .proof-image.youth-frame { aspect-ratio: 3 / 2; }
+    .proof-image.wellness-frame { aspect-ratio: 16 / 10; }
 
     .proof-image.contain {
       display: grid;
@@ -732,11 +734,6 @@
       .hero-copy,
       .hero-panel { min-height: auto; }
 
-      .proof-image.people-frame {
-        min-height: auto;
-        aspect-ratio: 3 / 2;
-      }
-
       .focus-copy {
         min-height: auto;
         gap: 32px;
@@ -848,7 +845,7 @@
 
   <section id="past">
     <div class="wrap focus-layout">
-      <figure class="proof-image people-frame reveal">
+      <figure class="proof-image people-frame youth-frame reveal">
         <img src="work-photos/youth-media-group.jpg" alt="Youth media group standing together after a field learning session">
         <figcaption class="proof-label">Youth media / literacy proof</figcaption>
       </figure>
@@ -881,7 +878,7 @@
         </div>
         <p class="sub">Led sessions with Access Mindfulness in NYC. Trained through Mindful Harlem's MBSR program.</p>
       </div>
-      <figure class="proof-image people-frame reveal">
+      <figure class="proof-image people-frame wellness-frame reveal">
         <img src="work-photos/community-practice.png" alt="Community practice session with group learning activity">
         <figcaption class="proof-label">Wellness session / community practice</figcaption>
       </figure>

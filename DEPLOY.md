@@ -2,6 +2,15 @@
 
 This folder is the standalone website export.
 
+From the project root, run:
+
+```text
+npm run sync:github-pages
+npm run check:site
+```
+
+Both commands should pass before publishing.
+
 Upload or push the contents of this folder to the GitHub repository you want to use for the site:
 
 - `index.html`

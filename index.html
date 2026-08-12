@@ -64,6 +64,7 @@
     }
 
     a:focus-visible,
+    button:focus-visible,
     .button:focus-visible {
       outline: 3px solid var(--red);
       outline-offset: 4px;
@@ -200,6 +201,10 @@
       padding-top: 34px;
     }
 
+    .hero-copy .kicker {
+      margin-bottom: 34px;
+    }
+
     .script {
       display: block;
       margin-top: 4px;
@@ -217,6 +222,32 @@
       font-family: var(--serif);
       font-size: clamp(24px, 3.1vw, 40px);
       line-height: 1.12;
+    }
+
+    .method-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      max-width: 720px;
+      margin-top: 24px;
+      color: var(--red);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .word-reveal .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 520ms ease, transform 520ms ease;
+      transition-delay: calc(var(--i) * 55ms);
+    }
+
+    .word-reveal.is-visible .word {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero-actions {
@@ -243,26 +274,125 @@
       color: var(--ink);
     }
 
-    .proof-strip {
+    .finder {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 34px;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+      gap: var(--gap);
+      align-items: start;
     }
 
-    .proof-strip p {
-      min-height: 112px;
-      padding: 18px 20px;
+    .finder-panel,
+    .finder-output {
       border: 2px solid var(--ink);
-      border-left: 10px solid var(--blue);
-      background: rgba(240, 232, 214, 0.86);
-      font-family: var(--serif);
-      font-size: clamp(18px, 1.7vw, 24px);
-      line-height: 1.18;
+      background: var(--cream);
     }
 
-    .proof-strip p:nth-child(2) { border-left-color: var(--red); }
-    .proof-strip p:nth-child(3) { border-left-color: var(--gold); }
+    .finder-panel {
+      padding: 30px;
+    }
+
+    .finder-output {
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+      padding: 34px;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .finder-group {
+      margin-top: 28px;
+      padding: 0;
+      border: 0;
+    }
+
+    .finder-group:first-child {
+      margin-top: 0;
+    }
+
+    .finder-group legend {
+      margin-bottom: 12px;
+      color: var(--red);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .option-button {
+      min-height: 58px;
+      padding: 13px 14px;
+      border: 2px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 800;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .option-button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .finder-output .label {
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    .finder-output h3 {
+      margin-top: 16px;
+      color: var(--cream);
+      font-size: clamp(34px, 4vw, 58px);
+    }
+
+    .finder-output p {
+      margin-top: 18px;
+      color: rgba(240, 232, 214, 0.78);
+      font-size: 19px;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0 0;
+    }
+
+    .plan-grid div {
+      min-height: 112px;
+      padding: 14px;
+      border: 1px solid rgba(182, 141, 71, 0.46);
+      background: rgba(240, 232, 214, 0.07);
+    }
+
+    .plan-grid dt {
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .plan-grid dd {
+      margin: 0;
+      color: rgba(240, 232, 214, 0.82);
+      font-size: 16px;
+      line-height: 1.28;
+    }
+
+    .finder-output .button {
+      margin-top: 28px;
+      border-color: var(--gold);
+      background: transparent;
+    }
 
     .portrait-card {
       display: grid;
@@ -327,6 +457,7 @@
     }
 
     .panel {
+      position: relative;
       display: flex;
       min-height: 420px;
       flex-direction: column;
@@ -359,6 +490,39 @@
     }
 
     .dark .sub { color: rgba(240, 232, 214, 0.76); }
+
+    .panel-action {
+      margin-top: 22px;
+    }
+
+    .foundation-panel {
+      overflow: hidden;
+    }
+
+    .foundation-panel::before {
+      content: "“";
+      position: absolute;
+      left: 14px;
+      top: 66px;
+      color: rgba(182, 141, 71, 0.18);
+      font-family: var(--serif);
+      font-size: clamp(220px, 25vw, 390px);
+      line-height: 0.72;
+      pointer-events: none;
+    }
+
+    .foundation-panel .lede {
+      position: relative;
+      max-width: 690px;
+      margin-top: 8px;
+      font-size: clamp(31px, 4vw, 56px);
+      line-height: 1.04;
+    }
+
+    .foundation-panel .sub {
+      position: relative;
+      margin-top: 12px;
+    }
 
     .photo {
       position: relative;
@@ -393,65 +557,442 @@
       text-transform: uppercase;
     }
 
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 28px;
+    .photo-label.high {
+      bottom: 58px;
     }
 
-    .work-link {
-      min-height: 180px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 20px;
-      border: 2px solid var(--ink);
-      background: var(--cream);
-    }
-
-    .work-link:hover {
+    .selected-work {
       background: var(--ink);
       color: var(--cream);
     }
 
-    .work-link strong {
+    .selected-work .kicker {
+      color: var(--gold);
+    }
+
+    .selected-work h2 {
+      max-width: 880px;
+    }
+
+    .chapter-list {
+      display: grid;
+      gap: 0;
+      margin-top: 36px;
+      border-top: 2px solid rgba(240, 232, 214, 0.3);
+    }
+
+    .work-chapter {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 20px;
+      align-items: stretch;
+      padding: clamp(26px, 4vw, 46px) 0;
+      border-bottom: 2px solid rgba(240, 232, 214, 0.3);
+      color: var(--cream);
+      overflow: hidden;
+    }
+
+    .work-chapter::before {
+      content: attr(data-title);
+      position: absolute;
+      left: clamp(42px, 8vw, 112px);
+      top: 50%;
+      color: rgba(240, 232, 214, 0.055);
       font-family: var(--display);
-      font-size: 32px;
-      line-height: 0.95;
+      font-size: clamp(118px, 19vw, 260px);
+      font-weight: 800;
+      line-height: 0.78;
+      text-transform: uppercase;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .work-chapter:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 8px;
+    }
+
+    .work-chapter:hover .chapter-media img,
+    .work-chapter:focus-visible .chapter-media img {
+      transform: scale(1.02);
+    }
+
+    .chapter-index {
+      grid-column: span 1;
+      position: relative;
+      z-index: 1;
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .chapter-copy {
+      grid-column: span 7;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: space-between;
+      gap: 26px;
+    }
+
+    .chapter-copy h3 {
+      max-width: 620px;
+      color: var(--cream);
+      font-size: clamp(58px, 11vw, 132px);
+      line-height: 0.82;
+    }
+
+    .chapter-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 680px;
+    }
+
+    .chapter-meta div {
+      padding-top: 12px;
+      border-top: 1px solid rgba(240, 232, 214, 0.32);
+    }
+
+    .chapter-meta strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 11px;
       text-transform: uppercase;
     }
 
-    .work-link span {
-      color: inherit;
-      font-size: 16px;
-      line-height: 1.25;
+    .chapter-meta p {
+      color: rgba(240, 232, 214, 0.78);
+      font-size: 17px;
     }
 
-    .method-grid {
+    .chapter-action {
+      justify-self: start;
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .chapter-media {
+      grid-column: span 4;
+      position: relative;
+      z-index: 1;
+      min-height: 360px;
+      overflow: hidden;
+      border: 2px solid rgba(240, 232, 214, 0.44);
+      background: var(--charcoal);
+    }
+
+    .chapter-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform 190ms ease;
+    }
+
+    .work-chapter.zine .chapter-media img {
+      object-position: center top;
+    }
+
+    .work-chapter.blog { background: rgba(37, 71, 91, 0.24); }
+    .work-chapter.zine { background: rgba(182, 141, 71, 0.13); }
+    .work-chapter.podcast { background: rgba(137, 38, 32, 0.17); }
+    .work-chapter.film { background: rgba(240, 232, 214, 0.06); }
+
+    .scrub-section {
+      --scrub-progress: 0;
+      min-height: 320vh;
+      padding: 0;
+      border-top: 2px solid var(--ink);
+    }
+
+    .scrub-stage {
+      position: sticky;
+      top: var(--nav-height);
+      min-height: calc(100dvh - var(--nav-height));
+      display: grid;
+      align-items: center;
+      padding: 44px 0;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(18, 17, 15, 0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 17, 15, 0.09) 1px, transparent 1px),
+        var(--cream);
+      background-size: 28px 28px;
+    }
+
+    .scrub-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.84fr) minmax(340px, 1.16fr);
+      gap: clamp(24px, 5vw, 64px);
+      align-items: center;
+    }
+
+    .scrub-copy {
+      display: grid;
+      gap: 18px;
+      align-content: center;
+    }
+
+    .scrub-copy h2 {
+      max-width: 620px;
+    }
+
+    .scrub-step {
+      display: grid;
+      gap: 8px;
+      padding: 18px 20px;
+      border: 2px solid rgba(18, 17, 15, 0.22);
+      background: rgba(229, 218, 198, 0.58);
+      opacity: 0.42;
+      transform: translateX(-10px);
+      transition: opacity 220ms ease, transform 220ms ease, border-color 220ms ease, background 220ms ease;
+    }
+
+    .scrub-step.is-active {
+      border-color: var(--ink);
+      background: var(--paper);
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scrub-step strong {
+      color: var(--red);
+      font-family: var(--display);
+      font-size: clamp(29px, 4vw, 48px);
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .scrub-step span {
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.32;
+    }
+
+    .scrub-visual {
+      position: relative;
+      min-height: min(70vw, 660px);
+      padding: clamp(18px, 3vw, 32px);
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(rgba(240, 232, 214, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240, 232, 214, 0.06) 1px, transparent 1px),
+        var(--ink);
+      background-size: 22px 22px;
+      color: var(--cream);
+      overflow: hidden;
+    }
+
+    .scrub-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(182, 141, 71, 0.14), transparent 30%, transparent 70%, rgba(37, 71, 91, 0.18)),
+        radial-gradient(circle at 62% 42%, rgba(182, 141, 71, 0.18), transparent 36%);
+      pointer-events: none;
+    }
+
+    .syllabus-board {
+      position: relative;
+      z-index: 1;
+      min-height: 590px;
+    }
+
+    .board-rail {
+      position: absolute;
+      left: 50%;
+      top: 9%;
+      bottom: 12%;
+      width: 2px;
+      background: rgba(182, 141, 71, 0.7);
+      transform: translateX(-50%);
+    }
+
+    .board-rail::before,
+    .board-rail::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--gold);
+      background: var(--ink);
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .board-rail::before { top: 0; }
+    .board-rail::after { bottom: 0; }
+
+    .artifact {
+      position: absolute;
+      width: min(43%, 280px);
+      min-height: 168px;
+      padding: 18px;
+      border: 2px solid var(--cream);
+      background: var(--cream);
+      color: var(--ink);
+      box-shadow: 10px 10px 0 rgba(18, 17, 15, 0.32);
+      transform-origin: center;
+      transition: opacity 80ms linear, transform 80ms linear;
+      will-change: transform, opacity;
+    }
+
+    .artifact.source {
+      left: 4%;
+      top: 5%;
+      z-index: 1;
+    }
+
+    .artifact.output {
+      right: 4%;
+      top: 18%;
+      border-color: var(--blue);
+      background: #D9DFDB;
+      z-index: 2;
+    }
+
+    .artifact.notes {
+      left: 7%;
+      bottom: 16%;
+      border-color: var(--gold);
+      background: #F4E7C8;
+      z-index: 3;
+    }
+
+    .artifact.project {
+      right: 8%;
+      bottom: 5%;
+      min-height: 190px;
+      border-color: var(--gold);
+      background: var(--paper);
+      z-index: 5;
+    }
+
+    .artifact .label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--red);
+      font-size: 11px;
+    }
+
+    .artifact h3 {
+      color: var(--ink);
+      font-size: clamp(25px, 3vw, 36px);
+    }
+
+    .artifact p,
+    .artifact li {
+      font-size: 15px;
+      line-height: 1.28;
+    }
+
+    .artifact p {
+      margin-top: 12px;
+    }
+
+    .artifact ul {
+      display: grid;
+      gap: 7px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .artifact li {
+      padding-left: 15px;
+      border-left: 4px solid var(--red);
+    }
+
+    .artifact.project li {
+      border-left-color: var(--blue);
+    }
+
+    .artifact-mark {
+      position: absolute;
+      right: 14px;
+      bottom: 12px;
+      color: rgba(18, 17, 15, 0.24);
+      font-family: var(--display);
+      font-size: 74px;
+      line-height: 0.7;
+    }
+
+    .checkline {
+      position: absolute;
+      left: 48%;
+      top: 42%;
+      width: 190px;
+      height: 74px;
+      border-top: 3px solid var(--gold);
+      border-right: 3px solid var(--gold);
+      opacity: 0.52;
+      transform: rotate(18deg);
+      transform-origin: left center;
+    }
+
+    .margin-note {
+      position: absolute;
+      left: 46%;
+      top: 49%;
+      z-index: 4;
+      width: 170px;
+      padding: 12px;
+      border: 2px solid var(--gold);
+      background: rgba(18, 17, 15, 0.86);
+      color: var(--cream);
+      font-family: var(--hand);
+      font-size: 25px;
+      line-height: 1.02;
+      transform: rotate(-5deg);
+      transition: opacity 80ms linear, transform 80ms linear;
+    }
+
+    .evidence-strip {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 46px;
+      z-index: 1;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      border: 2px solid var(--ink);
-      background: var(--cream);
+      gap: 8px;
     }
 
-    .method {
-      min-height: 260px;
-      padding: 28px;
-      border-right: 2px solid var(--ink);
+    .evidence-strip span {
+      padding: 9px 10px;
+      border: 1px solid rgba(240, 232, 214, 0.38);
+      background: rgba(240, 232, 214, 0.08);
+      color: rgba(240, 232, 214, 0.78);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
     }
 
-    .method:last-child {
-      border-right: 0;
-      background: var(--ink);
-      color: var(--cream);
+    .scrub-meter {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      z-index: 1;
+      height: 8px;
+      border: 1px solid var(--gold);
+      background: rgba(240, 232, 214, 0.1);
     }
 
-    .method p {
-      margin-top: 56px;
-      font-family: var(--serif);
-      font-size: clamp(24px, 2.6vw, 34px);
-      line-height: 1.08;
+    .scrub-meter span {
+      display: block;
+      width: calc(var(--scrub-progress) * 100%);
+      height: 100%;
+      background: var(--gold);
     }
 
     .quote-panel {
@@ -619,8 +1160,9 @@
       .nav-inner,
       .hero-grid,
       .split,
+      .work-chapter,
       .closing-grid,
-      .method-grid {
+      .scrub-layout {
         grid-template-columns: 1fr;
       }
 
@@ -652,13 +1194,38 @@
         padding: 28px;
       }
 
-      .method {
+      .scrub-section {
         min-height: auto;
-        border-right: 0;
-        border-bottom: 2px solid var(--ink);
       }
 
-      .method:last-child { border-bottom: 0; }
+      .scrub-stage {
+        position: relative;
+        top: auto;
+        min-height: auto;
+      }
+
+      .scrub-visual {
+        min-height: 420px;
+      }
+
+      .syllabus-board {
+        min-height: 640px;
+      }
+
+      .artifact {
+        width: min(46%, 280px);
+      }
+
+      .chapter-index,
+      .chapter-copy,
+      .chapter-media {
+        grid-column: auto;
+      }
+
+      .chapter-media {
+        min-height: 320px;
+        order: -1;
+      }
     }
 
     @media (max-width: 640px) {
@@ -666,10 +1233,33 @@
         width: min(var(--wrap-max), calc(100% - var(--gutter-mobile)));
       }
 
-      .proof-strip,
-      .work-grid,
       .pillar-row {
         grid-template-columns: 1fr;
+      }
+
+      .chapter-list {
+        margin-top: 26px;
+      }
+
+      .work-chapter {
+        gap: 18px;
+        padding: 28px 0;
+      }
+
+      .chapter-copy h3 {
+        font-size: clamp(48px, 18vw, 76px);
+      }
+
+      .chapter-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .plan-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-media {
+        min-height: 260px;
       }
 
       .portrait-card img {
@@ -679,6 +1269,52 @@
       .section {
         padding: var(--section-pad-mobile) 0;
       }
+
+      .scrub-stage {
+        padding: 36px 0;
+      }
+
+      .scrub-visual {
+        min-height: auto;
+        padding-bottom: 84px;
+      }
+
+      .syllabus-board {
+        min-height: auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .board-rail,
+      .checkline,
+      .margin-note {
+        display: none;
+      }
+
+      .artifact {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        min-height: auto;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .evidence-strip {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        grid-template-columns: 1fr;
+        margin-top: 14px;
+      }
+
+      .scrub-step strong {
+        font-size: 30px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -686,6 +1322,33 @@
       .reveal,
       .photo img,
       .portrait-card img {
+        transition: none;
+      }
+
+      .scrub-section {
+        --scrub-progress: 1;
+        min-height: auto;
+      }
+
+      .scrub-stage {
+        position: relative;
+        top: auto;
+      }
+
+      .scrub-step {
+        opacity: 1;
+        transform: none;
+      }
+
+      .word-reveal .word {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .artifact,
+      .margin-note,
+      .checkline {
         transition: none;
       }
     }
@@ -701,7 +1364,8 @@
       <div class="nav-links" aria-label="Primary">
         <a href="#workshops">AI Workshops</a>
         <a href="#approach">Approach</a>
-        <a href="#selected-work">Selected Work</a>
+        <a href="#methodology">Method</a>
+        <a href="#workshop-finder">Find Fit</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -714,26 +1378,32 @@
           <p class="kicker">AI educator / Literacy strategist / Community builder</p>
           <h1>Brandon Payne <span class="script">community connection</span></h1>
           <p class="offer">AI education, literacy, and media workshops for schools, libraries, camps, and community programs.</p>
+          <p class="method-line word-reveal" aria-label="Read the source. Question the output. Build something useful.">
+            <span class="word" style="--i: 0">Read</span>
+            <span class="word" style="--i: 1">the</span>
+            <span class="word" style="--i: 2">source.</span>
+            <span class="word" style="--i: 3">Question</span>
+            <span class="word" style="--i: 4">the</span>
+            <span class="word" style="--i: 5">output.</span>
+            <span class="word" style="--i: 6">Build</span>
+            <span class="word" style="--i: 7">something</span>
+            <span class="word" style="--i: 8">useful.</span>
+          </p>
           <div class="hero-actions">
-            <a class="button" href="mailto:brandonpnyc@gmail.com?subject=Workshop%20Inquiry">Book a workshop</a>
+            <a class="button" href="#workshop-finder">Find the right workshop</a>
             <a class="button secondary" href="#selected-work">View selected work</a>
           </div>
-        </div>
-        <div class="proof-strip" aria-label="Practice areas">
-          <p>Read the source: start with what is actually in front of you.</p>
-          <p>Question the output: ask what the tool missed, assumed, or flattened.</p>
-          <p>Build something useful: turn the lesson into work someone can use.</p>
         </div>
       </div>
 
       <figure class="portrait-card reveal">
         <img src="headshots/brandon-current-headshot.png" alt="Current professional headshot of Brandon Payne">
-        <figcaption class="bio-box">Brandon is a Brooklyn-born educator who helps communities turn ideas into blogs, zines, podcasts, films, and AI projects across literacy, media technology, and AI learning.</figcaption>
+        <figcaption class="bio-box">Brandon is a Brooklyn-born educator who helps communities transform personal passions into projects across literacy, media technology, and AI learning.</figcaption>
         <div class="detail-box">
           <p><strong>Spaces I've worked in</strong>Universities, Libraries, &amp; Public Schools.</p>
         </div>
         <div class="detail-box gold">
-          <p><strong>Outcomes</strong>Training that keeps creative tools usable for people often left out of technical spaces.</p>
+          <p><strong>Outcomes</strong>Providing training and support where tools for creation remain accessible to all.</p>
         </div>
       </figure>
     </div>
@@ -745,16 +1415,16 @@
         <div>
           <p class="kicker">AI workshops / Lead offer</p>
           <h2>4-6 weeks. Project-based. Any age.</h2>
-          <p class="lede">Many learners want to know when to trust AI, when to question it, and when to leave it alone. I teach them to read the source, question the output, and build something useful.</p>
+          <p class="lede">"We can fear AI or embrace its potential. I meet people in the middle to help use it with intention."</p>
         </div>
         <div>
           <p class="sub">Currently teaching @ Tamwood Camps' AI Academy at Fordham University.</p>
-          <a class="button" href="mailto:brandonpnyc@gmail.com?subject=AI%20Workshop%20Inquiry">Start a conversation</a>
+          <a class="button panel-action" href="mailto:brandonpnyc@gmail.com?subject=AI%20Workshop%20Inquiry">Start a conversation</a>
         </div>
       </div>
       <figure class="photo reveal">
-        <img src="work-photos/career-day-learning-room.avif" alt="Career day learning room with students and presentation setup" loading="lazy" decoding="async">
-        <figcaption class="photo-label">Learning room / active service</figcaption>
+        <img src="work-photos/career-day-learning-room-2.avif" alt="Career day learning room with students and presentation setup" loading="lazy" decoding="async">
+        <figcaption class="photo-label high">Learning room / active service</figcaption>
       </figure>
     </div>
   </section>
@@ -765,10 +1435,9 @@
         <img src="work-photos/youth-media-group.jpg" alt="Youth media group standing together after a field learning session" loading="lazy" decoding="async">
         <figcaption class="photo-label">Youth media / literacy proof</figcaption>
       </figure>
-      <div class="panel reveal">
+      <div class="panel foundation-panel reveal">
         <div>
           <p class="kicker">Media literacy / Foundation</p>
-          <h2>Read the source. Decide meaning.</h2>
           <p class="lede">Before AI, I taught youth how to read critically and decide meaning for themselves.</p>
         </div>
         <p class="sub">That skill now matters every time a learner checks an AI answer, names what it missed, and turns an idea into a project.</p>
@@ -776,27 +1445,244 @@
     </div>
   </section>
 
-  <section class="section" id="selected-work">
+  <section class="scrub-section" id="methodology" data-scroll-length="3">
+    <div class="scrub-stage">
+      <div class="wrap scrub-layout">
+        <div class="scrub-copy reveal">
+          <p class="kicker">Methodology / How learning moves</p>
+          <h2>Read. Question. Build.</h2>
+          <div class="scrub-step is-active" data-step="0">
+            <strong>Read the source.</strong>
+            <span>Start with what is actually in front of you.</span>
+          </div>
+          <div class="scrub-step" data-step="1">
+            <strong>Question the output.</strong>
+            <span>Ask what the tool missed, assumed, or flattened.</span>
+          </div>
+          <div class="scrub-step" data-step="2">
+            <strong>Build something useful.</strong>
+            <span>Turn the lesson into work someone can use.</span>
+          </div>
+        </div>
+        <div class="scrub-visual reveal" aria-hidden="true">
+          <div class="syllabus-board">
+            <div class="board-rail"></div>
+            <article class="artifact source" data-artifact="source">
+              <span class="label">Source packet</span>
+              <h3>Read first</h3>
+              <p>A paragraph, interview clip, photo, or prompt gets studied before any tool enters the room.</p>
+              <span class="artifact-mark">01</span>
+            </article>
+            <article class="artifact output" data-artifact="output">
+              <span class="label">AI response</span>
+              <h3>Check the answer</h3>
+              <ul>
+                <li>What is supported?</li>
+                <li>What got flattened?</li>
+                <li>What needs a source?</li>
+              </ul>
+              <span class="artifact-mark">02</span>
+            </article>
+            <div class="checkline" data-artifact="line"></div>
+            <div class="margin-note" data-artifact="note">What did the tool miss?</div>
+            <article class="artifact notes" data-artifact="notes">
+              <span class="label">Group notes</span>
+              <h3>Question with evidence</h3>
+              <p>Learners mark assumptions, rewrite the prompt, and decide what still needs human judgment.</p>
+              <span class="artifact-mark">03</span>
+            </article>
+            <article class="artifact project" data-artifact="project">
+              <span class="label">Finished use</span>
+              <h3>Build for someone</h3>
+              <ul>
+                <li>Zine page</li>
+                <li>Audio segment</li>
+                <li>Project plan</li>
+                <li>AI use guide</li>
+              </ul>
+              <span class="artifact-mark">04</span>
+            </article>
+          </div>
+          <div class="evidence-strip">
+            <span>Source before tool</span>
+            <span>Output under review</span>
+            <span>Project leaves the room</span>
+          </div>
+          <div class="scrub-meter"><span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section selected-work" id="selected-work">
     <div class="wrap">
       <p class="kicker">Selected work / Evidence</p>
-      <h2>Projects that made tools usable.</h2>
-      <div class="work-grid reveal">
-        <a class="work-link" href="https://Gr8ivity.wordpress.com" target="_blank" rel="noopener">
-          <strong>Blog</strong>
-          <span>Youth writing, reflection, and public voice.</span>
+      <h2>Projects where learners made the tools their own.</h2>
+      <div class="chapter-list reveal" aria-label="Selected work case-study chapters">
+        <a class="work-chapter zine" data-title="Zine" href="https://archive.org/details/yalpmagazine2019" target="_blank" rel="noopener">
+          <span class="chapter-index">01</span>
+          <div class="chapter-copy">
+            <div>
+              <h3>Printed proof</h3>
+              <div class="chapter-meta">
+                <div>
+                  <strong>Context</strong>
+                  <p>Students turned ideas, interviews, and visual choices into a shared publication.</p>
+                </div>
+                <div>
+                  <strong>Learner action</strong>
+                  <p>They shaped pages, edited copy, and made design choices for a real audience.</p>
+                </div>
+                <div>
+                  <strong>Outcome</strong>
+                  <p>The zine made media production tangible: layout, editing, authorship, and audience.</p>
+                </div>
+              </div>
+            </div>
+            <span class="chapter-action">Open zine</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="work-photos/yalp-magazine-thumbnail.jpg" alt="YALP Magazine cover page from the student publication archive" loading="lazy" decoding="async">
+          </figure>
         </a>
-        <a class="work-link" href="https://archive.org/details/yalpmagazine2019" target="_blank" rel="noopener">
-          <strong>Zine</strong>
-          <span>Student publishing through accessible media tools.</span>
+        <a class="work-chapter podcast" data-title="Podcast" href="https://archive.org/details/quarantine-hour-eps-1" target="_blank" rel="noopener">
+          <span class="chapter-index">02</span>
+          <div class="chapter-copy">
+            <div>
+              <h3>Public voice</h3>
+              <div class="chapter-meta">
+                <div>
+                  <strong>Context</strong>
+                  <p>Community conversation became an audio project with structure, pacing, and purpose.</p>
+                </div>
+                <div>
+                  <strong>Learner action</strong>
+                  <p>They planned segments, handled recording tools, and practiced listening as production work.</p>
+                </div>
+                <div>
+                  <strong>Outcome</strong>
+                  <p>Learners practiced listening, editing, hosting, and shaping a story people could hear.</p>
+                </div>
+              </div>
+            </div>
+            <span class="chapter-action">Open podcast</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="work-photos/podcast.jpeg" alt="Podcast workshop setup with laptops, microphones, headphones, and printed scripts" loading="lazy" decoding="async">
+          </figure>
         </a>
-        <a class="work-link" href="https://archive.org/details/quarantine-hour-eps-1" target="_blank" rel="noopener">
-          <strong>Podcast</strong>
-          <span>Audio storytelling built from community conversation.</span>
+        <a class="work-chapter film" data-title="Film" href="https://archive.org/details/nycha-dreams-stereotypes" target="_blank" rel="noopener">
+          <span class="chapter-index">03</span>
+          <div class="chapter-copy">
+            <div>
+              <h3>Fulfillment through film</h3>
+              <div class="chapter-meta">
+                <div>
+                  <strong>Context</strong>
+                  <p>Documentary work gave students a way to question stereotypes through lived experience.</p>
+                </div>
+                <div>
+                  <strong>Learner action</strong>
+                  <p>They used interviews, location, and image choices to make a claim with evidence.</p>
+                </div>
+                <div>
+                  <strong>Outcome</strong>
+                  <p>The final film connected place, memory, voice, and evidence in a public archive.</p>
+                </div>
+              </div>
+            </div>
+            <span class="chapter-action">Open film</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="work-photos/film-thumbnail.png" alt="Dreams in color and stereotypes in black and white documentary mural thumbnail" loading="lazy" decoding="async">
+          </figure>
         </a>
-        <a class="work-link" href="https://archive.org/details/nycha-dreams-stereotypes" target="_blank" rel="noopener">
-          <strong>Film</strong>
-          <span>Documentary work shaped by place, memory, and voice.</span>
+        <a class="work-chapter blog" data-title="Blog" href="https://Gr8ivity.wordpress.com" target="_blank" rel="noopener">
+          <span class="chapter-index">04</span>
+          <div class="chapter-copy">
+            <div>
+              <h3>Art for all</h3>
+              <div class="chapter-meta">
+                <div>
+                  <strong>Context</strong>
+                  <p>Youth writing moved from private reflection into a public digital space.</p>
+                </div>
+                <div>
+                  <strong>Learner action</strong>
+                  <p>They drafted posts, revised ideas, and used publishing tools to invite response.</p>
+                </div>
+                <div>
+                  <strong>Outcome</strong>
+                  <p>Learners practiced voice, revision, and publishing with a tool they could keep using.</p>
+                </div>
+              </div>
+            </div>
+            <span class="chapter-action">Open blog</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="work-photos/blog-thumbnail.png" alt="Calling ALL Artists blog graphic with red handset and bold blue text" loading="lazy" decoding="async">
+          </figure>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="workshop-finder">
+    <div class="wrap finder">
+      <div class="finder-panel reveal">
+        <p class="kicker">Build your inquiry</p>
+        <h2>Start with the room.</h2>
+        <fieldset class="finder-group" data-group="audience">
+          <legend>Audience</legend>
+          <div class="option-grid">
+            <button class="option-button" type="button" data-value="youth" aria-pressed="true">Youth program</button>
+            <button class="option-button" type="button" data-value="adults" aria-pressed="false">Adult learners</button>
+            <button class="option-button" type="button" data-value="educators" aria-pressed="false">Educators</button>
+            <button class="option-button" type="button" data-value="camp" aria-pressed="false">Camp cohort</button>
+          </div>
+        </fieldset>
+        <fieldset class="finder-group" data-group="goal">
+          <legend>Goal</legend>
+          <div class="option-grid">
+            <button class="option-button" type="button" data-value="ai" aria-pressed="true">Use AI with intention</button>
+            <button class="option-button" type="button" data-value="media" aria-pressed="false">Make a media project</button>
+            <button class="option-button" type="button" data-value="literacy" aria-pressed="false">Read critically</button>
+            <button class="option-button" type="button" data-value="wellness" aria-pressed="false">Reset tech habits</button>
+          </div>
+        </fieldset>
+        <fieldset class="finder-group" data-group="format">
+          <legend>Format</legend>
+          <div class="option-grid">
+            <button class="option-button" type="button" data-value="single" aria-pressed="true">One session</button>
+            <button class="option-button" type="button" data-value="series" aria-pressed="false">4-6 week series</button>
+            <button class="option-button" type="button" data-value="training" aria-pressed="false">Staff training</button>
+            <button class="option-button" type="button" data-value="custom" aria-pressed="false">Custom plan</button>
+          </div>
+        </fieldset>
+      </div>
+      <div class="finder-output reveal" aria-live="polite">
+        <span class="label">Sample plan</span>
+        <h3 id="finder-title">AI project lab</h3>
+        <p id="finder-copy">Learners test an AI answer against evidence, revise the prompt, and make a small project they can explain.</p>
+        <dl class="plan-grid">
+          <div>
+            <dt>Ideal audience</dt>
+            <dd id="finder-audience">Youth program</dd>
+          </div>
+          <div>
+            <dt>Session structure</dt>
+            <dd id="finder-structure">Source warm-up, AI comparison, group critique, project build.</dd>
+          </div>
+          <div>
+            <dt>Sample activity</dt>
+            <dd id="finder-activity">Compare a source paragraph with an AI summary and mark what changed.</dd>
+          </div>
+          <div>
+            <dt>Outcome</dt>
+            <dd id="finder-inquiry">A clear next step learners can explain and keep using.</dd>
+          </div>
+        </dl>
+        <a class="button" id="finder-email" href="mailto:brandonpnyc@gmail.com?subject=Workshop%20Inquiry&body=Audience%3A%20Youth%20program%0AGoal%3A%20Use%20AI%20with%20intention%0AFormat%3A%20One%20session">Send this inquiry</a>
       </div>
     </div>
   </section>
@@ -815,25 +1701,6 @@
         <img src="work-photos/community-practice.png" alt="Community practice session with group learning activity" loading="lazy" decoding="async">
         <figcaption class="photo-label">Wellness session / community practice</figcaption>
       </figure>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="method-grid reveal" aria-label="Learning method">
-        <div class="method">
-          <h3>Read the source.</h3>
-          <p>Start with what is actually in front of you.</p>
-        </div>
-        <div class="method">
-          <h3>Question the output.</h3>
-          <p>Ask what the tool missed, assumed, or flattened.</p>
-        </div>
-        <div class="method">
-          <h3>Build something useful.</h3>
-          <p>Turn the lesson into work someone can use.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -876,9 +1743,245 @@
       .map((link) => document.querySelector(link.getAttribute("href")))
       .filter(Boolean);
     const revealEls = [...document.querySelectorAll(".reveal")];
+    const wordRevealEls = [...document.querySelectorAll(".word-reveal")];
+    const finderState = {
+      audience: "youth",
+      goal: "ai",
+      format: "single"
+    };
+
+    const audienceLabels = {
+      youth: "Youth program",
+      adults: "Adult learners",
+      educators: "Educators",
+      camp: "Camp cohort"
+    };
+
+    const goalLabels = {
+      ai: "Use AI with intention",
+      media: "Make a media project",
+      literacy: "Read critically",
+      wellness: "Reset tech habits"
+    };
+
+    const formatLabels = {
+      single: "One session",
+      series: "4-6 week series",
+      training: "Staff training",
+      custom: "Custom plan"
+    };
+
+    const recommendations = {
+      ai: {
+        title: "AI project lab",
+        copy: "Learners test an AI answer against evidence, revise the prompt, and make a small project they can explain.",
+        structure: "Source warm-up, AI comparison, group critique, project build.",
+        activity: "Compare a source paragraph with an AI summary and mark what changed.",
+        outcome: "A small project and a clearer habit for checking AI before trusting it."
+      },
+      media: {
+        title: "Media build studio",
+        copy: "Learners turn one idea into a blog, zine, podcast, or short film with clear checkpoints.",
+        structure: "Idea board, tool demo, production sprint, share-out.",
+        activity: "Draft a project page with title, audience, source material, and next production step.",
+        outcome: "A publishable media artifact with a production path learners can repeat."
+      },
+      literacy: {
+        title: "Critical reading workshop",
+        copy: "Learners practice reading the source, naming evidence, and deciding meaning before using a tool.",
+        structure: "Close read, evidence map, AI check, revision.",
+        activity: "Annotate a short source and separate what it says from what a summary assumes.",
+        outcome: "A practical reading routine learners can use before, during, and after AI work."
+      },
+      wellness: {
+        title: "Tech rhythm reset",
+        copy: "Learners map where technology helps, where it crowds attention, and what supports clearer work.",
+        structure: "Habit map, attention audit, reset plan, group reflection.",
+        activity: "Build a one-week tech rhythm map with work blocks, breaks, and no-screen recovery time.",
+        outcome: "A simple rhythm learners can test to protect attention while still using tools."
+      }
+    };
+
+    const educatorRecommendations = {
+      ai: {
+        title: "Curriculum building studio",
+        copy: "Educators turn AI use into a lesson arc with source material, critique checkpoints, and a student-facing project.",
+        structure: "Learning goal, source set, AI critique routine, project rubric, classroom rollout.",
+        activity: "Build a mini-unit where students compare an AI response against two sources before revising their own answer.",
+        outcome: "A classroom-ready AI lesson that teaches verification, judgment, and responsible tool use."
+      },
+      media: {
+        title: "Curriculum building studio",
+        copy: "Educators design a media project sequence that moves students from idea to public artifact.",
+        structure: "Project brief, exemplar review, production roles, revision checkpoint, share-out.",
+        activity: "Build a media assignment where students choose a format, define an audience, and submit a production checklist.",
+        outcome: "A repeatable project plan for blogs, zines, podcasts, or short films."
+      },
+      literacy: {
+        title: "Curriculum building studio",
+        copy: "Educators build a reading routine students can use before a summary, search result, or AI answer shapes their thinking.",
+        structure: "Text selection, annotation protocol, evidence map, AI comparison, reflection.",
+        activity: "Create a source packet and discussion protocol that asks students to separate evidence from interpretation.",
+        outcome: "A literacy routine educators can reuse across subjects and reading levels."
+      },
+      wellness: {
+        title: "Curriculum building studio",
+        copy: "Educators design a lesson sequence that helps students notice how technology shapes attention and work habits.",
+        structure: "Attention audit, tech habit map, reflection prompt, reset plan, classroom check-in.",
+        activity: "Build a classroom reflection where students map one tech habit and choose one adjustment to test for a week.",
+        outcome: "A student-facing reset plan that supports clearer work without rejecting technology."
+      }
+    };
+
+    const finderTitle = document.getElementById("finder-title");
+    const finderCopy = document.getElementById("finder-copy");
+    const finderEmail = document.getElementById("finder-email");
+    const finderAudience = document.getElementById("finder-audience");
+    const finderStructure = document.getElementById("finder-structure");
+    const finderActivity = document.getElementById("finder-activity");
+    const finderInquiry = document.getElementById("finder-inquiry");
+
+    const updateFinder = () => {
+      if (!finderTitle || !finderCopy || !finderEmail) return;
+      const recommendation = finderState.audience === "educators"
+        ? educatorRecommendations[finderState.goal]
+        : recommendations[finderState.goal];
+      const audience = audienceLabels[finderState.audience];
+      const format = formatLabels[finderState.format];
+      finderTitle.textContent = recommendation.title;
+      finderCopy.textContent = recommendation.copy;
+      if (finderAudience) finderAudience.textContent = `${audience}. ${format}.`;
+      if (finderStructure) finderStructure.textContent = recommendation.structure;
+      if (finderActivity) finderActivity.textContent = recommendation.activity;
+      if (finderInquiry) finderInquiry.textContent = recommendation.outcome;
+
+      const body = [
+        `Sample plan: ${recommendation.title}`,
+        `Audience: ${audience}`,
+        `Goal: ${goalLabels[finderState.goal]}`,
+        `Format: ${format}`,
+        `Structure: ${recommendation.structure}`,
+        `Activity: ${recommendation.activity}`,
+        `Outcome: ${recommendation.outcome}`,
+        "",
+        "Timeline:",
+        "Location:",
+        "Audience size:"
+      ].join("\n");
+
+      finderEmail.href = `mailto:brandonpnyc@gmail.com?subject=${encodeURIComponent("Workshop Inquiry")}&body=${encodeURIComponent(body)}`;
+    };
+
+    document.querySelectorAll(".finder-group").forEach((group) => {
+      group.addEventListener("click", (event) => {
+        const button = event.target.closest(".option-button");
+        if (!button) return;
+        const key = group.dataset.group;
+        finderState[key] = button.dataset.value;
+        group.querySelectorAll(".option-button").forEach((option) => {
+          option.setAttribute("aria-pressed", String(option === button));
+        });
+        updateFinder();
+      });
+    });
+
+    updateFinder();
+
+    const scrubSection = document.querySelector(".scrub-section");
+    const scrubStage = document.querySelector(".scrub-stage");
+    const scrubSteps = [...document.querySelectorAll(".scrub-step")];
+    const artifacts = {
+      source: document.querySelector("[data-artifact='source']"),
+      output: document.querySelector("[data-artifact='output']"),
+      notes: document.querySelector("[data-artifact='notes']"),
+      project: document.querySelector("[data-artifact='project']"),
+      note: document.querySelector("[data-artifact='note']"),
+      line: document.querySelector("[data-artifact='line']")
+    };
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const narrowScreen = window.matchMedia("(max-width: 920px)");
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const lerp = (from, to, progress) => from + (to - from) * progress;
+    let scrubFrame = null;
+
+    const setScrubProgress = (progress) => {
+      if (!scrubSection || !scrubStage) return;
+      const p = clamp(progress, 0, 1);
+      const activeIndex = p < 0.34 ? 0 : p < 0.68 ? 1 : 2;
+      scrubSection.style.setProperty("--scrub-progress", p.toFixed(3));
+
+      scrubSteps.forEach((step, index) => {
+        step.classList.toggle("is-active", index === activeIndex);
+      });
+
+      const sourceFocus = clamp(1 - p / 0.38, 0, 1);
+      const questionFocus = clamp((p - 0.2) / 0.46, 0, 1);
+      const buildFocus = clamp((p - 0.58) / 0.38, 0, 1);
+
+      if (artifacts.source) {
+        artifacts.source.style.transform = `translate(${lerp(-34, 0, p)}px, ${lerp(18, 0, p)}px) rotate(${lerp(-7, -1, p)}deg)`;
+        artifacts.source.style.opacity = String(lerp(1, 0.72, questionFocus));
+      }
+
+      if (artifacts.output) {
+        artifacts.output.style.transform = `translate(${lerp(48, 0, questionFocus)}px, ${lerp(-20, 0, questionFocus)}px) rotate(${lerp(8, 1, questionFocus)}deg)`;
+        artifacts.output.style.opacity = String(lerp(0.28, 1, questionFocus));
+      }
+
+      if (artifacts.notes) {
+        artifacts.notes.style.transform = `translate(${lerp(0, 0, questionFocus)}px, ${lerp(54, 0, questionFocus)}px) rotate(${lerp(0, 2, questionFocus)}deg)`;
+        artifacts.notes.style.opacity = String(lerp(0.18, 1, questionFocus));
+      }
+
+      if (artifacts.project) {
+        artifacts.project.style.transform = `translate(${lerp(60, 0, buildFocus)}px, ${lerp(74, 0, buildFocus)}px) rotate(${lerp(10, -1, buildFocus)}deg) scale(${lerp(0.86, 1, buildFocus)})`;
+        artifacts.project.style.opacity = String(lerp(0.08, 1, buildFocus));
+      }
+
+      if (artifacts.note) {
+        artifacts.note.style.transform = `translateY(${lerp(20, 0, questionFocus)}px) rotate(${lerp(-12, -5, questionFocus)}deg)`;
+        artifacts.note.style.opacity = String(lerp(0, 1, questionFocus) * (1 - buildFocus));
+      }
+
+      if (artifacts.line) {
+        artifacts.line.style.transform = `rotate(${lerp(4, 18, questionFocus)}deg) scaleX(${lerp(0.32, 1, questionFocus)})`;
+        artifacts.line.style.opacity = String(lerp(0.12, 0.58, questionFocus));
+      }
+
+      if (artifacts.source && sourceFocus > 0.64) {
+        artifacts.source.style.opacity = "1";
+      }
+    };
+
+    const measureScrub = () => {
+      scrubFrame = null;
+      if (!scrubSection || reduceMotion.matches || narrowScreen.matches) {
+        setScrubProgress(1);
+        return;
+      }
+      const rect = scrubSection.getBoundingClientRect();
+      const maxScroll = Math.max(1, rect.height - window.innerHeight);
+      setScrubProgress(clamp(-rect.top / maxScroll, 0, 1));
+    };
+
+    const queueScrubMeasure = () => {
+      if (scrubFrame !== null) return;
+      scrubFrame = window.requestAnimationFrame(measureScrub);
+    };
+
+    if (scrubSection) {
+      setScrubProgress(reduceMotion.matches || narrowScreen.matches ? 1 : 0);
+      window.addEventListener("scroll", queueScrubMeasure, { passive: true });
+      window.addEventListener("resize", queueScrubMeasure);
+      reduceMotion.addEventListener("change", queueScrubMeasure);
+      narrowScreen.addEventListener("change", queueScrubMeasure);
+      queueScrubMeasure();
+    }
 
     if (!("IntersectionObserver" in window)) {
       revealEls.forEach((el) => el.classList.add("is-visible"));
+      wordRevealEls.forEach((el) => el.classList.add("is-visible"));
     } else {
       const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
@@ -889,6 +1992,7 @@
       }, { threshold: 0.16 });
 
       revealEls.forEach((el) => revealObserver.observe(el));
+      wordRevealEls.forEach((el) => revealObserver.observe(el));
 
       const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {

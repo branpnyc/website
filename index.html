@@ -601,12 +601,39 @@
       z-index: 1;
     }
 
-    .wellness-section .nyc-motif {
-      right: auto;
-      left: -6vw;
-      bottom: 22px;
-      width: min(680px, 58vw);
-      color: rgba(182, 141, 71, 0.13);
+    .photo-stack {
+      display: grid;
+      gap: 18px;
+      align-self: center;
+    }
+
+    .section-skyline {
+      height: clamp(72px, 9vw, 118px);
+      overflow: hidden;
+      color: rgba(182, 141, 71, 0.22);
+    }
+
+    .section-skyline svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .section-skyline .line {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .section-skyline .fill {
+      fill: currentColor;
+    }
+
+    .wellness-skyline {
+      height: clamp(108px, 13vw, 176px);
+      color: rgba(182, 141, 71, 0.24);
     }
 
     .photo-label {
@@ -1314,11 +1341,14 @@
         color: rgba(37, 71, 91, 0.09);
       }
 
-      .wellness-section .nyc-motif {
-        left: -28vw;
-        bottom: 34px;
-        width: 110vw;
-        color: rgba(182, 141, 71, 0.08);
+      .section-skyline {
+        height: 82px;
+        color: rgba(182, 141, 71, 0.18);
+      }
+
+      .wellness-skyline {
+        height: 118px;
+        color: rgba(182, 141, 71, 0.2);
       }
 
       .closing .nyc-motif {
@@ -1507,6 +1537,7 @@
           <div class="hero-actions">
             <a class="button" href="#workshop-finder">Find the right workshop</a>
             <a class="button secondary" href="#selected-work">View selected work</a>
+            <a class="button secondary" href="mailto:brandonpnyc@gmail.com?subject=AI%20Workshop%20Inquiry">Start a conversation</a>
           </div>
         </div>
       </div>
@@ -1534,7 +1565,6 @@
         </div>
         <div>
           <p class="sub">Currently teaching @ Tamwood Camps' AI Academy at Fordham University.</p>
-          <a class="button panel-action" href="mailto:brandonpnyc@gmail.com?subject=AI%20Workshop%20Inquiry">Start a conversation</a>
         </div>
       </div>
       <figure class="photo reveal">
@@ -1546,10 +1576,26 @@
 
   <section class="section" id="approach">
     <div class="wrap split">
-      <figure class="photo youth reveal">
-        <img src="./work-photos/youth-media-group.jpg" alt="Youth media group standing together after a field learning session" loading="lazy" decoding="async">
-        <figcaption class="photo-label">Youth media / literacy proof</figcaption>
-      </figure>
+      <div class="photo-stack reveal">
+        <figure class="photo youth">
+          <img src="./work-photos/youth-media-group.jpg" alt="Youth media group standing together after a field learning session" loading="lazy" decoding="async">
+          <figcaption class="photo-label">Youth media / literacy proof</figcaption>
+        </figure>
+        <div class="section-skyline" aria-hidden="true">
+          <svg viewBox="0 90 1000 230">
+            <path class="fill" d="M86 302V184h24v-28h42v28h22v118H86Z" />
+            <path class="line" d="M82 184c42 46 80 46 124 0M82 204c42 42 80 42 124 0M100 302V184M158 302V184" />
+            <path class="fill" d="M246 302V166h26v-28h20v-22h24v22h20v28h26v136H246Z" />
+            <path class="fill" d="M414 302V132h28v-28h20V76h18V48h12v28h18v28h20v28h28v170H414Z" />
+            <path class="fill" d="M604 302V98l44-54 44 54v204H604Z" />
+            <path class="fill" d="M744 302v-92h22v-58h18v-32h16v32h18v58h22v92H744Z" />
+            <path class="line" d="M782 120l-24-34M792 120l-6-42M800 120l18-40M810 120l38-24" />
+            <path class="fill" d="M862 302V178h30v-40h26v40h30v124H862Z" />
+            <path class="line" d="M876 138c18-26 40-26 58 0" />
+            <path class="line" d="M48 302C132 230 214 230 298 302M56 302c78-48 154-48 232 0" />
+          </svg>
+        </div>
+      </div>
       <div class="panel foundation-panel reveal">
         <div>
           <p class="kicker">Media literacy / Foundation</p>
@@ -1803,21 +1849,6 @@
   </section>
 
   <section class="section wellness-section">
-    <div class="nyc-motif" aria-hidden="true">
-      <svg viewBox="0 0 1000 360">
-        <path class="line" d="M24 302H976" />
-        <path class="fill" d="M86 302V184h24v-28h42v28h22v118H86Z" />
-        <path class="line" d="M82 184c42 46 80 46 124 0M82 204c42 42 80 42 124 0M100 302V184M158 302V184" />
-        <path class="fill" d="M246 302V166h26v-28h20v-22h24v22h20v28h26v136H246Z" />
-        <path class="fill" d="M414 302V132h28v-28h20V76h18V48h12v28h18v28h20v28h28v170H414Z" />
-        <path class="fill" d="M604 302V98l44-54 44 54v204H604Z" />
-        <path class="fill" d="M744 302v-92h22v-58h18v-32h16v32h18v58h22v92H744Z" />
-        <path class="line" d="M782 120l-24-34M792 120l-6-42M800 120l18-40M810 120l38-24" />
-        <path class="fill" d="M862 302V178h30v-40h26v40h30v124H862Z" />
-        <path class="line" d="M876 138c18-26 40-26 58 0" />
-        <path class="line" d="M48 302C132 230 214 230 298 302M56 302c78-48 154-48 232 0" />
-      </svg>
-    </div>
     <div class="wrap split">
       <div class="panel reveal">
         <div>
@@ -1827,10 +1858,26 @@
         </div>
         <p class="sub">Led sessions with Access Mindfulness in NYC. Trained through Mindful Harlem's MBSR program.</p>
       </div>
-      <figure class="photo wellness reveal">
-        <img src="./work-photos/community-practice.png" alt="Community practice session with group learning activity" loading="lazy" decoding="async">
-        <figcaption class="photo-label">Wellness session / community practice</figcaption>
-      </figure>
+      <div class="photo-stack reveal">
+        <figure class="photo wellness">
+          <img src="./work-photos/community-practice.png" alt="Community practice session with group learning activity" loading="lazy" decoding="async">
+          <figcaption class="photo-label">Wellness session / community practice</figcaption>
+        </figure>
+        <div class="section-skyline wellness-skyline" aria-hidden="true">
+          <svg viewBox="0 90 1000 230">
+            <path class="fill" d="M86 302V184h24v-28h42v28h22v118H86Z" />
+            <path class="line" d="M82 184c42 46 80 46 124 0M82 204c42 42 80 42 124 0M100 302V184M158 302V184" />
+            <path class="fill" d="M246 302V166h26v-28h20v-22h24v22h20v28h26v136H246Z" />
+            <path class="fill" d="M414 302V132h28v-28h20V76h18V48h12v28h18v28h20v28h28v170H414Z" />
+            <path class="fill" d="M604 302V98l44-54 44 54v204H604Z" />
+            <path class="fill" d="M744 302v-92h22v-58h18v-32h16v32h18v58h22v92H744Z" />
+            <path class="line" d="M782 120l-24-34M792 120l-6-42M800 120l18-40M810 120l38-24" />
+            <path class="fill" d="M862 302V178h30v-40h26v40h30v124H862Z" />
+            <path class="line" d="M876 138c18-26 40-26 58 0" />
+            <path class="line" d="M48 302C132 230 214 230 298 302M56 302c78-48 154-48 232 0" />
+          </svg>
+        </div>
+      </div>
     </div>
   </section>
 

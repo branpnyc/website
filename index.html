@@ -732,22 +732,32 @@
     }
 
     .chapter-list {
-      display: grid;
-      gap: 0;
+      position: relative;
       margin-top: 36px;
       border-top: 2px solid rgba(240, 232, 214, 0.3);
+      border-bottom: 2px solid rgba(240, 232, 214, 0.3);
+    }
+
+    .chapter-viewport {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
     }
 
     .work-chapter {
       position: relative;
-      display: grid;
+      display: none;
       grid-template-columns: repeat(12, minmax(0, 1fr));
       gap: 20px;
       align-items: stretch;
       padding: clamp(26px, 4vw, 46px) 0;
-      border-bottom: 2px solid rgba(240, 232, 214, 0.3);
       color: var(--cream);
       overflow: hidden;
+      min-height: 520px;
+    }
+
+    .work-chapter.is-active {
+      display: grid;
     }
 
     .work-chapter::before {
@@ -862,6 +872,53 @@
     .work-chapter.zine { background: rgba(182, 141, 71, 0.13); }
     .work-chapter.podcast { background: rgba(137, 38, 32, 0.17); }
     .work-chapter.film { background: rgba(240, 232, 214, 0.06); }
+
+    .chapter-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 0 0;
+    }
+
+    .chapter-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 4;
+      display: inline-grid;
+      place-items: center;
+      width: 52px;
+      height: 72px;
+      border: 2px solid var(--gold);
+      background: rgba(18, 17, 15, 0.78);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 900;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .chapter-arrow.prev {
+      left: 0;
+    }
+
+    .chapter-arrow.next {
+      right: 0;
+    }
+
+    .chapter-arrow:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .chapter-count {
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
 
     .scrub-section {
       --scrub-progress: 0;
@@ -1500,6 +1557,7 @@
       .work-chapter {
         gap: 18px;
         padding: 28px 0;
+        min-height: auto;
       }
 
       .chapter-copy h3 {
@@ -1520,6 +1578,20 @@
 
       .chapter-media {
         min-height: 260px;
+      }
+
+      .chapter-viewport {
+        min-height: auto;
+      }
+
+      .chapter-controls {
+        align-items: flex-start;
+      }
+
+      .chapter-arrow {
+        width: 42px;
+        height: 58px;
+        font-size: 22px;
       }
 
       .portrait-card img {
@@ -1809,8 +1881,9 @@
     <div class="wrap">
       <p class="kicker">Selected work / Evidence</p>
       <h2>Projects where learners made the tools their own.</h2>
-      <div class="chapter-list reveal" aria-label="Selected work case-study chapters">
-        <a class="work-chapter zine" data-title="Zine" href="https://archive.org/details/yalpmagazine2019" target="_blank" rel="noopener">
+      <div class="chapter-list reveal" aria-label="Selected work case-study carousel">
+        <div class="chapter-viewport">
+        <a class="work-chapter zine is-active" data-title="Zine" href="https://archive.org/details/yalpmagazine2019" target="_blank" rel="noopener">
           <span class="chapter-index">01</span>
           <div class="chapter-copy">
             <div>
@@ -1914,6 +1987,12 @@
             <img src="./work-photos/blog-thumbnail.png" alt="Calling ALL Artists blog graphic with red handset and bold blue text" loading="lazy" decoding="async">
           </figure>
         </a>
+          <button class="chapter-arrow prev" type="button" data-chapter-prev aria-label="Previous project">&#9664;</button>
+          <button class="chapter-arrow next" type="button" data-chapter-next aria-label="Next project">&#9654;</button>
+        </div>
+        <div class="chapter-controls" aria-label="Selected work controls">
+          <span class="chapter-count" data-chapter-count>01 / 04</span>
+        </div>
       </div>
     </div>
   </section>
@@ -2080,7 +2159,7 @@
             </span>
           </div>
         </div>
-        <div class="pillar-topline">view. teach. explore.</div>
+        <div class="pillar-topline">view. learn. explore.</div>
         <div class="pillar-row" aria-label="Literacy, AI, and Wellness practice model">
           <div class="pillar"><strong>Literacy</strong><span>Read the source</span></div>
           <div class="pillar"><strong>AI</strong><span>Question the output</span></div>
@@ -2107,6 +2186,34 @@
       .filter(Boolean);
     const revealEls = [...document.querySelectorAll(".reveal")];
     const wordRevealEls = [...document.querySelectorAll(".word-reveal")];
+    const chapterSlides = [...document.querySelectorAll(".work-chapter")];
+    const chapterPrev = document.querySelector("[data-chapter-prev]");
+    const chapterNext = document.querySelector("[data-chapter-next]");
+    const chapterCount = document.querySelector("[data-chapter-count]");
+    let activeChapter = Math.max(0, chapterSlides.findIndex((slide) => slide.classList.contains("is-active")));
+
+    const setActiveChapter = (index) => {
+      if (!chapterSlides.length) return;
+      activeChapter = (index + chapterSlides.length) % chapterSlides.length;
+      chapterSlides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === activeChapter;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+        slide.tabIndex = isActive ? 0 : -1;
+      });
+      if (chapterCount) {
+        chapterCount.textContent = `${String(activeChapter + 1).padStart(2, "0")} / ${String(chapterSlides.length).padStart(2, "0")}`;
+      }
+    };
+
+    chapterPrev?.addEventListener("click", () => setActiveChapter(activeChapter - 1));
+    chapterNext?.addEventListener("click", () => setActiveChapter(activeChapter + 1));
+    document.getElementById("selected-work")?.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") setActiveChapter(activeChapter - 1);
+      if (event.key === "ArrowRight") setActiveChapter(activeChapter + 1);
+    });
+    setActiveChapter(activeChapter);
+
     const finderState = {
       audience: "youth",
       goal: "ai",

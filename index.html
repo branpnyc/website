@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Brandon Payne | AI Education, Literacy, and Media Workshops</title>
-  <meta name="description" content="Brooklyn-born educator Brandon Payne designs AI education, literacy, and media workshops for schools, libraries, camps, and community programs.">
+  <meta name="description" content="Brooklyn-born NYC educator Brandon Payne designs AI education, literacy, and media workshops for schools, libraries, camps, and community programs.">
   <meta property="og:title" content="Brandon Payne | AI Education and Community Learning">
   <meta property="og:description" content="Workshops that help learners read critically, question AI outputs, and build creative projects with intention.">
   <meta property="og:type" content="website">
@@ -183,14 +183,61 @@
     }
 
     .hero {
+      position: relative;
+      overflow: hidden;
       padding: 34px 0 58px;
+      isolation: isolate;
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
       gap: var(--gap);
       align-items: stretch;
+    }
+
+    .nyc-silhouette,
+    .nyc-motif {
+      position: absolute;
+      z-index: 0;
+      color: rgba(37, 71, 91, 0.12);
+      pointer-events: none;
+    }
+
+    .nyc-silhouette {
+      right: max(-80px, -4vw);
+      bottom: -16px;
+      width: min(900px, 74vw);
+    }
+
+    .nyc-motif {
+      right: -5vw;
+      bottom: -2px;
+      width: min(760px, 62vw);
+      color: rgba(182, 141, 71, 0.16);
+    }
+
+    .nyc-silhouette svg,
+    .nyc-motif svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .nyc-silhouette .line,
+    .nyc-motif .line {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nyc-silhouette .fill,
+    .nyc-motif .fill {
+      fill: currentColor;
     }
 
     .hero-copy {
@@ -542,6 +589,25 @@
 
     .photo.youth { aspect-ratio: 3 / 2; min-height: 0; align-self: center; }
     .photo.wellness { aspect-ratio: 16 / 10; min-height: 0; align-self: center; }
+
+    .wellness-section {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .wellness-section .wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .wellness-section .nyc-motif {
+      right: auto;
+      left: -6vw;
+      bottom: 22px;
+      width: min(680px, 58vw);
+      color: rgba(182, 141, 71, 0.13);
+    }
 
     .photo-label {
       position: absolute;
@@ -1020,13 +1086,25 @@
     }
 
     .closing {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       padding: 96px 0 40px;
       border-top: 0;
       background: var(--ink);
       color: var(--cream);
     }
 
+    .closing .nyc-motif {
+      right: -8vw;
+      bottom: 10px;
+      width: min(920px, 76vw);
+      color: rgba(240, 232, 214, 0.08);
+    }
+
     .closing-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
       gap: var(--gap);
@@ -1136,6 +1214,8 @@
     .contact-panel > span:last-child { border-bottom: 0; }
 
     .footer-line {
+      position: relative;
+      z-index: 1;
       margin-top: 68px;
       padding-top: 22px;
       border-top: 1px solid rgba(240, 232, 214, 0.24);
@@ -1225,6 +1305,26 @@
       .chapter-media {
         min-height: 320px;
         order: -1;
+      }
+
+      .nyc-silhouette {
+        width: 96vw;
+        right: -34vw;
+        bottom: 18px;
+        color: rgba(37, 71, 91, 0.09);
+      }
+
+      .wellness-section .nyc-motif {
+        left: -28vw;
+        bottom: 34px;
+        width: 110vw;
+        color: rgba(182, 141, 71, 0.08);
+      }
+
+      .closing .nyc-motif {
+        right: -34vw;
+        width: 120vw;
+        color: rgba(240, 232, 214, 0.06);
       }
     }
 
@@ -1372,12 +1472,27 @@
   </nav>
 
   <header class="hero" id="home">
+    <div class="nyc-silhouette" aria-hidden="true">
+      <svg viewBox="0 0 1000 360" role="img">
+        <path class="line" d="M24 302H976" />
+        <path class="fill" d="M86 302V184h24v-28h42v28h22v118H86Z" />
+        <path class="line" d="M82 184c42 46 80 46 124 0M82 204c42 42 80 42 124 0M100 302V184M158 302V184" />
+        <path class="fill" d="M246 302V166h26v-28h20v-22h24v22h20v28h26v136H246Z" />
+        <path class="fill" d="M414 302V132h28v-28h20V76h18V48h12v28h18v28h20v28h28v170H414Z" />
+        <path class="fill" d="M604 302V98l44-54 44 54v204H604Z" />
+        <path class="fill" d="M744 302v-92h22v-58h18v-32h16v32h18v58h22v92H744Z" />
+        <path class="line" d="M782 120l-24-34M792 120l-6-42M800 120l18-40M810 120l38-24" />
+        <path class="fill" d="M862 302V178h30v-40h26v40h30v124H862Z" />
+        <path class="line" d="M876 138c18-26 40-26 58 0" />
+        <path class="line" d="M48 302C132 230 214 230 298 302M56 302c78-48 154-48 232 0" />
+      </svg>
+    </div>
     <div class="wrap hero-grid">
       <div class="hero-copy reveal">
         <div>
           <p class="kicker">AI educator / Literacy strategist / Community builder</p>
           <h1>Brandon Payne <span class="script">community connection</span></h1>
-          <p class="offer">AI education, literacy, and media workshops for schools, libraries, camps, and community programs.</p>
+          <p class="offer">NYC-rooted AI education, literacy, and media workshops for schools, libraries, camps, and community programs.</p>
           <p class="method-line word-reveal" aria-label="Read the source. Question the output. Build something useful.">
             <span class="word" style="--i: 0">Read</span>
             <span class="word" style="--i: 1">the</span>
@@ -1423,7 +1538,7 @@
         </div>
       </div>
       <figure class="photo reveal">
-        <img src="./work-photos/career-day-learning-room-2.avif" alt="Career day learning room with students and presentation setup" loading="lazy" decoding="async">
+        <img src="./work-photos/career-day-learning-room-2.jpg" alt="Career day learning room with students and presentation setup" loading="lazy" decoding="async">
         <figcaption class="photo-label high">Learning room / active service</figcaption>
       </figure>
     </div>
@@ -1687,7 +1802,22 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section wellness-section">
+    <div class="nyc-motif" aria-hidden="true">
+      <svg viewBox="0 0 1000 360">
+        <path class="line" d="M24 302H976" />
+        <path class="fill" d="M86 302V184h24v-28h42v28h22v118H86Z" />
+        <path class="line" d="M82 184c42 46 80 46 124 0M82 204c42 42 80 42 124 0M100 302V184M158 302V184" />
+        <path class="fill" d="M246 302V166h26v-28h20v-22h24v22h20v28h26v136H246Z" />
+        <path class="fill" d="M414 302V132h28v-28h20V76h18V48h12v28h18v28h20v28h28v170H414Z" />
+        <path class="fill" d="M604 302V98l44-54 44 54v204H604Z" />
+        <path class="fill" d="M744 302v-92h22v-58h18v-32h16v32h18v58h22v92H744Z" />
+        <path class="line" d="M782 120l-24-34M792 120l-6-42M800 120l18-40M810 120l38-24" />
+        <path class="fill" d="M862 302V178h30v-40h26v40h30v124H862Z" />
+        <path class="line" d="M876 138c18-26 40-26 58 0" />
+        <path class="line" d="M48 302C132 230 214 230 298 302M56 302c78-48 154-48 232 0" />
+      </svg>
+    </div>
     <div class="wrap split">
       <div class="panel reveal">
         <div>
@@ -1714,6 +1844,21 @@
   </section>
 
   <footer class="closing" id="contact">
+    <div class="nyc-motif" aria-hidden="true">
+      <svg viewBox="0 0 1000 360">
+        <path class="line" d="M24 302H976" />
+        <path class="fill" d="M86 302V184h24v-28h42v28h22v118H86Z" />
+        <path class="line" d="M82 184c42 46 80 46 124 0M82 204c42 42 80 42 124 0M100 302V184M158 302V184" />
+        <path class="fill" d="M246 302V166h26v-28h20v-22h24v22h20v28h26v136H246Z" />
+        <path class="fill" d="M414 302V132h28v-28h20V76h18V48h12v28h18v28h20v28h28v170H414Z" />
+        <path class="fill" d="M604 302V98l44-54 44 54v204H604Z" />
+        <path class="fill" d="M744 302v-92h22v-58h18v-32h16v32h18v58h22v92H744Z" />
+        <path class="line" d="M782 120l-24-34M792 120l-6-42M800 120l18-40M810 120l38-24" />
+        <path class="fill" d="M862 302V178h30v-40h26v40h30v124H862Z" />
+        <path class="line" d="M876 138c18-26 40-26 58 0" />
+        <path class="line" d="M48 302C132 230 214 230 298 302M56 302c78-48 154-48 232 0" />
+      </svg>
+    </div>
     <div class="wrap closing-grid">
       <div class="reveal">
         <p class="kicker">Contact</p>

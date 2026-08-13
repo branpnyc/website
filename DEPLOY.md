@@ -26,7 +26,7 @@ The final repository root should look like:
 index.html
 .nojekyll
 headshots/brandon-current-headshot.png
-work-photos/career-day-learning-room-2.avif
+work-photos/career-day-learning-room-2.jpg
 work-photos/youth-media-group.jpg
 work-photos/yalp-magazine-thumbnail.jpg
 work-photos/podcast.jpeg

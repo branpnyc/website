@@ -1554,6 +1554,7 @@
       .nav-inner,
       .hero-grid,
       .split,
+      .finder,
       .featured-proof-grid,
       .work-chapter,
       .closing-grid,
@@ -1602,18 +1603,50 @@
         position: relative;
         top: auto;
         min-height: auto;
+        padding: 48px 0;
       }
 
       .scrub-visual {
-        min-height: 420px;
+        min-height: auto;
+        padding-bottom: 84px;
       }
 
       .syllabus-board {
-        min-height: 640px;
+        min-height: auto;
+        display: grid;
+        gap: 16px;
+      }
+
+      .board-rail,
+      .checkline,
+      .margin-note {
+        display: none;
       }
 
       .artifact {
-        width: min(46%, 280px);
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        min-height: auto;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .artifact.project {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .evidence-strip {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 16px;
       }
 
       .chapter-index,

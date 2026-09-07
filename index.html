@@ -1164,6 +1164,10 @@
       will-change: auto;
     }
 
+    .artifact-toggle {
+      display: none;
+    }
+
     .artifact.source {
       grid-column: 1;
       grid-row: 1;
@@ -1592,7 +1596,7 @@
 
       .syllabus-board {
         min-height: auto;
-        display: grid;
+        display: block;
         grid-template-columns: 1fr;
         gap: 16px;
       }
@@ -1615,6 +1619,11 @@
         min-height: auto;
         transform: none !important;
         opacity: 1 !important;
+        display: none;
+      }
+
+      .artifact.is-mobile-active {
+        display: block;
       }
 
       .artifact.project {
@@ -1629,6 +1638,39 @@
 
       .artifact.notes {
         margin-top: 12px;
+      }
+
+      .artifact-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .artifact-toggle button {
+        min-width: 44px;
+        min-height: 42px;
+        border: 2px solid var(--gold);
+        background: transparent;
+        color: var(--cream);
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .artifact-toggle button:hover {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .artifact-toggle-status {
+        color: var(--gold);
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
 
       .evidence-strip {
@@ -1964,6 +2006,11 @@
         min-height: auto;
         transform: none !important;
         opacity: 1 !important;
+        display: none;
+      }
+
+      .artifact.is-mobile-active {
+        display: block;
       }
 
       .artifact.notes,
@@ -2191,10 +2238,10 @@
             <span>Turn the lesson into work someone can use.</span>
           </div>
         </div>
-        <div class="scrub-visual reveal" aria-hidden="true">
+        <div class="scrub-visual reveal" role="group" aria-label="Methodology visual">
           <div class="syllabus-board">
             <div class="board-rail"></div>
-            <article class="artifact source" data-artifact="source">
+            <article class="artifact source is-mobile-active" data-artifact="source">
               <span class="label">Source packet</span>
               <h3>Read first</h3>
               <p>A paragraph, interview clip, photo, or prompt gets studied before any tool enters the room.</p>
@@ -2220,7 +2267,7 @@
             </article>
             <article class="artifact project" data-artifact="project">
               <span class="label">Finished use</span>
-              <h3>Build for someone</h3>
+              <h3>Completed work</h3>
               <ul>
                 <li>Zine page</li>
                 <li>Audio segment</li>
@@ -2229,6 +2276,11 @@
               </ul>
               <span class="artifact-mark">04</span>
             </article>
+          </div>
+          <div class="artifact-toggle" aria-label="Methodology cards">
+            <button type="button" data-artifact-prev aria-label="Show previous methodology card">←</button>
+            <span class="artifact-toggle-status" data-artifact-status>1 / 4</span>
+            <button type="button" data-artifact-next aria-label="Show next methodology card">→</button>
           </div>
           <div class="evidence-strip">
             <span>Source before tool</span>
@@ -2729,6 +2781,27 @@
       note: document.querySelector("[data-artifact='note']"),
       line: document.querySelector("[data-artifact='line']")
     };
+    const artifactSlides = [...document.querySelectorAll(".artifact")];
+    const artifactPrev = document.querySelector("[data-artifact-prev]");
+    const artifactNext = document.querySelector("[data-artifact-next]");
+    const artifactStatus = document.querySelector("[data-artifact-status]");
+    let mobileArtifactIndex = 0;
+
+    const setMobileArtifact = (index) => {
+      if (!artifactSlides.length) return;
+      mobileArtifactIndex = (index + artifactSlides.length) % artifactSlides.length;
+      artifactSlides.forEach((artifact, artifactIndex) => {
+        artifact.classList.toggle("is-mobile-active", artifactIndex === mobileArtifactIndex);
+      });
+      if (artifactStatus) {
+        artifactStatus.textContent = `${mobileArtifactIndex + 1} / ${artifactSlides.length}`;
+      }
+    };
+
+    artifactPrev?.addEventListener("click", () => setMobileArtifact(mobileArtifactIndex - 1));
+    artifactNext?.addEventListener("click", () => setMobileArtifact(mobileArtifactIndex + 1));
+    setMobileArtifact(mobileArtifactIndex);
+
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const narrowScreen = window.matchMedia("(max-width: 920px)");
 

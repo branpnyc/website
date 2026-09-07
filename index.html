@@ -1100,7 +1100,7 @@
 
     .scrub-visual {
       position: relative;
-      min-height: min(70vw, 660px);
+      min-height: 0;
       padding: clamp(18px, 3vw, 32px);
       border: 2px solid var(--ink);
       background:
@@ -1125,17 +1125,13 @@
     .syllabus-board {
       position: relative;
       z-index: 1;
-      min-height: 590px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .board-rail {
-      position: absolute;
-      left: 50%;
-      top: 9%;
-      bottom: 12%;
-      width: 2px;
-      background: rgba(182, 141, 71, 0.7);
-      transform: translateX(-50%);
+      display: none;
     }
 
     .board-rail::before,
@@ -1154,46 +1150,48 @@
     .board-rail::after { bottom: 0; }
 
     .artifact {
-      position: absolute;
-      width: min(43%, 280px);
-      min-height: 168px;
+      position: relative;
+      width: auto;
+      min-height: 214px;
       padding: 18px;
       border: 2px solid var(--cream);
       background: var(--cream);
       color: var(--ink);
-      box-shadow: 10px 10px 0 rgba(18, 17, 15, 0.32);
-      transform-origin: center;
-      transition: opacity 80ms linear, transform 80ms linear;
-      will-change: transform, opacity;
+      box-shadow: 7px 7px 0 rgba(18, 17, 15, 0.32);
+      transform: none !important;
+      opacity: 1 !important;
+      transition: box-shadow 160ms ease, transform 160ms ease;
+      will-change: auto;
     }
 
     .artifact.source {
-      left: 4%;
-      top: 5%;
+      grid-column: 1;
+      grid-row: 1;
       z-index: 1;
     }
 
     .artifact.output {
-      right: 4%;
-      top: 9%;
+      grid-column: 2;
+      grid-row: 1;
       border-color: var(--blue);
       background: #D9DFDB;
       z-index: 2;
     }
 
     .artifact.notes {
-      left: 2%;
-      bottom: 17%;
+      grid-column: 1;
+      grid-row: 2;
+      margin-top: 0;
       border-color: var(--gold);
       background: #F4E7C8;
       z-index: 3;
     }
 
     .artifact.project {
-      right: 2%;
-      top: 35%;
-      width: min(40%, 260px);
-      min-height: 190px;
+      grid-column: 2;
+      grid-row: 2;
+      width: auto;
+      min-height: 214px;
       border-color: var(--gold);
       background: var(--paper);
       z-index: 5;
@@ -1249,44 +1247,23 @@
     }
 
     .checkline {
-      position: absolute;
-      left: 48%;
-      top: 42%;
-      width: 190px;
-      height: 74px;
-      border-top: 3px solid var(--gold);
-      border-right: 3px solid var(--gold);
-      opacity: 0.52;
-      transform: rotate(18deg);
-      transform-origin: left center;
+      display: none;
     }
 
     .margin-note {
-      position: absolute;
-      left: 46%;
-      top: 49%;
-      z-index: 4;
-      width: 170px;
-      padding: 12px;
-      border: 2px solid var(--gold);
-      background: rgba(18, 17, 15, 0.86);
-      color: var(--cream);
-      font-family: var(--hand);
-      font-size: 25px;
-      line-height: 1.02;
-      transform: rotate(-5deg);
-      transition: opacity 80ms linear, transform 80ms linear;
+      display: none;
     }
 
     .evidence-strip {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 46px;
+      position: relative;
+      left: auto;
+      right: auto;
+      bottom: auto;
       z-index: 1;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
+      margin-top: 18px;
     }
 
     .evidence-strip span {
@@ -1301,14 +1278,15 @@
     }
 
     .scrub-meter {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
+      position: relative;
+      left: auto;
+      right: auto;
+      bottom: auto;
       z-index: 1;
       height: 8px;
       border: 1px solid var(--gold);
       background: rgba(240, 232, 214, 0.1);
+      margin-top: 16px;
     }
 
     .scrub-meter span {
@@ -1609,12 +1587,13 @@
 
       .scrub-visual {
         min-height: auto;
-        padding-bottom: 84px;
+        padding-bottom: 32px;
       }
 
       .syllabus-board {
         min-height: auto;
         display: grid;
+        grid-template-columns: 1fr;
         gap: 16px;
       }
 
@@ -1952,12 +1931,13 @@
 
       .scrub-visual {
         min-height: auto;
-        padding-bottom: 84px;
+        padding-bottom: 32px;
       }
 
       .syllabus-board {
         min-height: auto;
         display: grid;
+        grid-template-columns: 1fr;
         gap: 14px;
       }
 
